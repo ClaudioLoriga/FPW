@@ -1,0 +1,329 @@
+* 
+{
+    box-sizing: border-box;
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+body{
+    background-color: #e4e4e4;
+    font: 17px/25px Arial, Helvetica, sans-serif;
+}
+
+h1, h2, #about p, div#contatti
+{
+    text-align: center;
+}
+
+h2{
+    color: #333333;
+    font: 25px/40px Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+nav{
+    background-color: #ffffff;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    margin-top: 5px;
+}
+
+header{
+    background-color: #ffffff;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+}
+
+
+#intro
+{
+    text-align: center;
+    color: blue;
+}
+
+
+.stats
+{
+    color: #3a8f1e;
+    font-size: 22px;
+}
+
+nav ul, nav li{
+    list-style-type: none;
+    display: inline-block;
+}
+
+.active
+{
+    text-decoration: underline;
+}
+
+a:link{
+    font-size: 20px;
+    text-decoration: none;
+    color: #111111;
+}
+
+a:visited{
+
+    color: #111111;
+
+}
+
+a:hover{
+    font-weight: bold;
+}
+
+.hover
+{
+    color: green;
+}
+
+a:link
+{
+    font-size: 20px;
+    text-decoration: none;
+}
+
+a
+{
+    color: #111111;
+}
+
+
+label::after, label::before
+{  
+    white-space: pre;
+}
+
+
+div#newRecensioneBox, div#loginBox, div#contattiBox, div#userBox
+{
+    background-color: #ffffff;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    padding: 15px;
+    padding: 20px;
+    height: auto;
+}
+
+div#newRecensioneBox, div#contattiBox, div#userBox{
+    margin-top: 10px;
+}
+
+#loginBox
+{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+div#newRecensioneBox input, div#loginBox input, div#contattiBox input
+{
+    display: block;
+    width: 66%;
+    margin-left:16%;
+    margin-top: 5px;
+}
+
+div#newRecensioneBox textarea, div#contattiBox textarea{
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+article
+{
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    padding: 10px;
+}
+
+.row
+{
+    clear: both;
+}
+
+.row::after
+{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+article.news
+{
+    margin-top: 5px;
+}
+
+article .newsTitle
+{
+    font: 30px Arial, Helvetica, sans-serif;   
+    font-weight: bold;
+    color: green;
+}
+
+article .newsDate, a[href="#inizio"]  
+{
+    font: 15px Arial, Helvetica, sans-serif;   
+    font-weight: bold;
+    color: green;
+}
+
+a[href="#inizio"] 
+{
+    display:block;
+    text-align: center;
+}
+
+#aboutIndex
+{
+    background: #5AA356;
+    padding: 20px;
+}
+
+#aboutIndex li
+{
+    background: #85F07F;
+    list-style-type: circle;
+    padding: 5px;
+    margin-left: 5px;
+}
+
+.fondatore
+{
+    clear: both;
+}
+
+.mono
+{
+    font-family: monospace;
+}
+
+table 
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border: 1px solid black;
+}
+
+th, td:nth-child(1)
+{
+    background-color: #85F07F;
+}
+th:nth-child(1)
+{
+    background-color: transparent;
+    border: 0px solid black;
+}
+tr:nth-child(even)
+{
+    background-color:#a7a7a7
+}
+
+@media only screen and (min-width: 768px)
+{
+    [class*="col-"] {
+        float: left;
+        padding: 15px;
+    }
+    article
+    {
+        height: 250px;
+    }
+
+    img[title=Logo]
+    {
+        width: auto;
+        height: 73px;
+        max-height: 20vh;
+    }
+
+    nav li{
+        padding-left: 20px;
+        padding-right: 20px;
+        border-right: 2px solid #111111;
+    }
+
+    nav li:last-child{
+        border-right: 0px solid #111111;
+    }
+
+    div#loginBox
+    {
+        width: 450px;
+    }
+
+    div#newRecensioneBox, div#contattiBox, div#userBox{
+        width: 50vw;
+        min-width: 400px;
+        margin: 5px auto 0 auto;
+    }
+
+    .fondatoreImg
+    {
+        object-fit: contain;
+    }
+
+    .fondatoreBio
+    {
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width: 768px)
+{
+    [class*="col-"] {
+        float: none;
+        width: 100%;
+        padding: 15px;
+    }
+
+    img[title=Logo]
+    {
+        width: auto;
+        height: 45px;
+    }
+
+    nav ul
+    {
+        padding-left: 0px;
+    }
+
+    nav li
+    {
+        display: block;
+        border: 0px solid black;
+    }
+
+    div#loginBox
+    {
+        width: 300px;
+    }
+
+    div#newRecensioneBox, div#contattiBox, div#userBox{
+        width: 100%;
+    }
+
+    .fondatoreImg
+    {
+        object-fit: contain;
+    }
+
+}
