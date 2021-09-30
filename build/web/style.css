@@ -41,8 +41,13 @@ nav{
 
 header{
     background-color: #ffffff;
-    text-align: center;
+    text-align: left;
     box-shadow: 0 0 10px rgba(0,0,0,.2);
+}
+
+#headerText
+{
+    text-align: right;
 }
 
 
@@ -52,6 +57,12 @@ header{
     color: blue;
 }
 
+#registrazioneFrase
+{
+    text-align: right;
+    background-color: grey;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+}
 
 .stats
 {
@@ -108,7 +119,7 @@ label::after, label::before
 }
 
 
-div#newRecensioneBox, div#loginBox, div#contattiBox, div#userBox
+div#newRecensioneBox, div#loginBoxUser, div#contattiBox, div#userBox, div#loginBoxAdministrator
 {
     background-color: #ffffff;
     text-align: center;
@@ -122,15 +133,23 @@ div#newRecensioneBox, div#contattiBox, div#userBox{
     margin-top: 10px;
 }
 
-#loginBox
+#loginBoxUser
 {
     position: absolute;
     top: 45%;
-    left: 50%;
+    left: 30%;
     transform: translate(-50%, -50%);
 }
 
-div#newRecensioneBox input, div#loginBox input, div#contattiBox input
+#loginBoxAdministrator
+{
+    position: absolute;
+    top: 45%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+}
+
+div#newRecensioneBox input, div#loginUserBox input, div#contattiBox input, div#loginUserAdministrator
 {
     display: block;
     width: 66%;
@@ -265,7 +284,7 @@ tr:nth-child(even)
         border-right: 0px solid #111111;
     }
 
-    div#loginBox
+    div#loginBoxUser
     {
         width: 450px;
     }
@@ -312,7 +331,7 @@ tr:nth-child(even)
         border: 0px solid black;
     }
 
-    div#loginBox
+    div#loginBoxUser
     {
         width: 300px;
     }

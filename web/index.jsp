@@ -19,11 +19,7 @@ and open the template in the editor.
     </head>
     <body>
         <c:set var="page" value="index" scope="request"/>
-        <jsp:include page="header.jsp"/>
-        <c:if test="${empty recensione}">
-            <c:redirect url="home"/>
-        </c:if>
-        <c:if test="${not empty recensione}">   
+        <jsp:include page="header.jsp"/>  
             <div id="intro">
                 <h2>Benvenuti!</h2>
                 <p>
@@ -65,7 +61,6 @@ and open the template in the editor.
                     <input type="submit" value="Carica Immagine"/>
                 </form>
             </div>
-        </c:if>
     </body>
 </html>
 
