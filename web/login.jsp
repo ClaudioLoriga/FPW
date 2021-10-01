@@ -31,10 +31,10 @@ and open the template in the editor.
             <a href="index.jsp"><img title="Logo" alt="Logo di ScooterCritic" src="img/logo_avis_old.jpg"></a>
             <h1>Login as administrator</h1>
             <form action="login" method="post">
-                <label for="user">Username</label>
-                <input id="usernameLogin" type="text" id="user" name="admin"/>
-                <label for="pass">Password</label>
-                <input type="password" id="pass" name="admin_pass"/>
+                <label for="admin">Username</label>
+                <input id="usernameLogin" type="text" id="admin" name="admin"/>
+                <label for="admin_pass">Password</label>
+                <input type="password" id="admin_pass" name="admin_pass"/>
                 <input type="submit" value="Accedi"/>
             </form>
         </div>
