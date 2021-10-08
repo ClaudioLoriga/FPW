@@ -9,7 +9,7 @@ and open the template in the editor.
 <html>
     <head>
         <title>ScooterCritic</title>
-        <meta name="author" content="Mauretto">
+        <meta name="author" content="ClaudioLoriga">
         <meta name="description" content="Il sito di recensioni di monopattini elettrici">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,9 +23,9 @@ and open the template in the editor.
             <div id="intro">
                 <h2>Benvenuti!</h2>
                 <p>
-                    In questo sito potrete <b><i>leggere e scrivere recensioni</i></b>
-                    sui monopattini più in voga del momento!
-                    Il tutto <u>completamente gratis</u>!     
+                    In questo sito potrete <b><i>visualizzare e prenotare sessioni di donazione</i></b>
+                    a vostro piacimento con un semplice click!
+                    Il tutto <u>completamente online</u>!     
                 </p>
 
                 <input list="listaDiMonopattini" type="text">
@@ -34,7 +34,7 @@ and open the template in the editor.
                 </datalist>
             </div>
             <div>
-                <h2>Recensioni in evidenza</h2>
+                <h2>Sessioni di donazione disponibili</h2>
                 <div>
                     <div class="col-1">
                         <button id="prevReview"> < </button>
@@ -42,9 +42,9 @@ and open the template in the editor.
                     <div class="col-10">
 
                         <article>
-                            <h3 id="titoloRecensione" class="stats"> Recensione di ${recensione.getUtente_id()} del ${recensione.getData()}</h3>
-                            <p id="commentoRecensione">${recensione.getCommento()}</p>
-                            <p id="statisticheRecensione" class="stats"><b>Giudizio: </b> ${recensione.getVoto()}<b> Like</b>: ${recensione.getNum_like()}</p>
+                            <h3 id="titoloRecensione" class="stats"> Sessione: Inizio ${sessione.getOra_inizio()} Fine ${sessione.getOra_fine()}</h3>
+                            <p id="commentoRecensione">Luogo: ${sessione.getLuogo()}</p>
+                            <p id="statisticheRecensione" class="stats"><b>Data: </b>${sessione.getData_sessione()}</p>
                         </article>
 
                     </div>

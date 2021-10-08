@@ -18,23 +18,12 @@ and open the template in the editor.
     <body>
         <div id="loginBoxUser">
             <a href="index.jsp"><img title="Logo" alt="Logo avis old" src="img/logo_avis_old.jpg"></a>
-            <h1>Login as user</h1>
+            <h1>Login</h1>
             <form action="login" method="post">
                 <label for="user">Username</label>
                 <input id="usernameLogin" type="text" id="user" name="user"/>
                 <label for="pass">Password</label>
                 <input type="password" id="pass" name="pass"/>
-                <input type="submit" value="Accedi"/>
-            </form>
-        </div>
-        <div id="loginBoxAdministrator">
-            <a href="index.jsp"><img title="Logo" alt="Logo di ScooterCritic" src="img/logo_avis_old.jpg"></a>
-            <h1>Login as administrator</h1>
-            <form action="login" method="post">
-                <label for="admin">Username</label>
-                <input id="usernameLogin" type="text" id="admin" name="admin"/>
-                <label for="admin_pass">Password</label>
-                <input type="password" id="admin_pass" name="admin_pass"/>
                 <input type="submit" value="Accedi"/>
             </form>
         </div>

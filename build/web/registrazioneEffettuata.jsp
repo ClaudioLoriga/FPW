@@ -16,6 +16,7 @@
             <c:if test="${not empty user}">
                 <h1>Grazie per la tua registrazione!</h1>
                 <h2>Ora puoi usufruire pienamente dei nostri servizi.</h2>
+                <a href="areaPersonale.jsp">Clicca qui per accedere alla tua area personale</a>
             </c:if>
         </div>
     </body>

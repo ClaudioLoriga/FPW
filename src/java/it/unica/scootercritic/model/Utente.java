@@ -1,14 +1,24 @@
 package it.unica.scootercritic.model;
 
+import java.sql.Date;
 import java.util.Objects;
 
 public class Utente {
+
     private String username;
     private String password;
     private String nome;
     private String cognome;
+    private Date dataDiNascita;
+    private String cf;
+    private String sesso;
     private String email;
+    private int telefono;
+    private String gs;
+    private String patologie;
     private String foto;
+
+    public Utente() {}
 
     public String getUsername() {
         return username;
@@ -26,8 +36,32 @@ public class Utente {
         return cognome;
     }
 
+    public Date getDataDiNascita() {
+        return dataDiNascita;
+    }
+
+    public String getCf() {
+        return cf;
+    }
+
+    public String getSesso() {
+        return sesso;
+    }
+
     public String getEmail() {
         return email;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public String getGs() {
+        return gs;
+    }
+
+    public String getPatologie() {
+        return patologie;
     }
 
     public String getFoto() {
@@ -50,8 +84,32 @@ public class Utente {
         this.cognome = cognome;
     }
 
+    public void setDataDiNascita(Date data_di_nascita) {
+        this.dataDiNascita = data_di_nascita;
+    }
+
+    public void setCf(String cf) {
+        this.cf = cf;
+    }
+
+    public void setSesso(String sesso) {
+        this.sesso = sesso;
+    }
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setGs(String gs) {
+        this.gs = gs;
+    }
+
+    public void setPatologie(String patologie) {
+        this.patologie = patologie;
     }
 
     public void setFoto(String foto) {
@@ -61,7 +119,7 @@ public class Utente {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.username);
+        hash = 97 * hash + Objects.hashCode(this.username);
         return hash;
     }
 
@@ -82,4 +140,7 @@ public class Utente {
         }
         return true;
     }
+
+
+
 }

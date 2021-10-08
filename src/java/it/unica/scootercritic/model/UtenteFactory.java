@@ -68,4 +68,51 @@ public class UtenteFactory {
         }
         return null;
     }
+    
+        public static boolean setUtenteIntoDb(Utente nuovo_utente) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet set = null;
+
+        try {
+            conn = DatabaseManager.getInstance().getDbConnection();
+            String query = "INSERT INTO utente VALUES" + "(?,?,?,?,?,?,?,?,?,?,?,?)";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, nuovo_utente.getUsername());
+            stmt.setString(2, nuovo_utente.getPassword());
+            stmt.setString(3, nuovo_utente.getNome());
+            stmt.setString(4, nuovo_utente.getCognome());
+            stmt.setDate(5, nuovo_utente.getDataDiNascita());
+            stmt.setString(6, nuovo_utente.getCf());
+            stmt.setString(7, nuovo_utente.getSesso());
+            stmt.setString(8, nuovo_utente.getEmail());
+            stmt.setInt(9, nuovo_utente.getTelefono());
+            stmt.setString(10, nuovo_utente.getGs());
+            stmt.setString(11, nuovo_utente.getPatologie());
+            stmt.setString(12, nuovo_utente.getFoto());
+            set = stmt.executeQuery();
+            return true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+            try {
+                set.close();
+            } catch (Exception e) {
+            }
+            try {
+                stmt.close();
+            } catch (Exception e) {
+            }
+            try {
+                conn.close();
+            } catch (Exception e) {
+            }
+
+        }
+        return false;
+    }
+    
+    
 }

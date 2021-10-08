@@ -41,7 +41,7 @@
                 <label for="email_registrazione">Inserisci la tua email</label>
                 <input type="text" id="email_registrazione" name="email_registrazione"/>
                 <label for="telefono_registrazione">Inserisci il tuo numero telefonico</label>
-                <input type="text" id="telefono_registrazione" name="telefono_registrazione"/>
+                <input type="number" id="telefono_registrazione" name="telefono_registrazione"/>
                 <label for="sanguigno_registrazione">Inserisci il tuo gruppo sanguigno (A,B,AB,0)</label>
                 <input type="text" id="sanguigno_registrazione" name="sanguigno_registrazione"/>
                 <label for="patologie_registrazione">Hai eventuali patologie da segnalarci?</label>
