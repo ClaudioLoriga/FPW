@@ -1,6 +1,7 @@
 package it.unica.scootercritic.model;
 
 import java.sql.Time;
+import java.sql.Date;
 
 public class SessioneDonazione {
 
@@ -8,7 +9,7 @@ public class SessioneDonazione {
     private Time ora_inizio;
     private Time ora_fine;
     private String luogo;
-    private Time data_sessione;
+    private Date data_sessione;
     private Boolean prenotata;
     private String username;
 
@@ -31,7 +32,7 @@ public class SessioneDonazione {
         return luogo;
     }
 
-    public Time getData_sessione() {
+    public Date getData_sessione() {
         return data_sessione;
     }
 
@@ -59,7 +60,7 @@ public class SessioneDonazione {
         this.luogo = luogo;
     }
 
-    public void setData_sessione(Time data_sessione) {
+    public void setData_sessione(Date data_sessione) {
         this.data_sessione = data_sessione;
     }
 

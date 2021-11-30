@@ -19,8 +19,8 @@
             <c:redirect url="login.jsp"/>
         </c:if>
         <c:if test="${not empty user}">
-        <c:set var="page" value="areaPersonale" scope="request"/>
-        <jsp:include page="header.jsp"/>
+            <c:set var="page" value="areaPersonale" scope="request"/>
+            <jsp:include page="header.jsp"/>
 
             <div id="userBox">
                 <h1>Ciao ${user}!</h1>
@@ -31,18 +31,21 @@
             </div>
         </c:if>
         <div>
-                <h2>Segnalazioni:</h2>
-                <div class="row">
-                    <c:forEach items="${listaSegnalazioni}" var="segnalazione">
-                        <div class="col-6">
-                            <article>
-                                <h3 class="stats">Segnalazione ${segnalazioni.getOggetto()} fatta il ${segnalazioni.getData()}</h3>
-                                <p>${segnalazioni.getTesto()}</p>
-                                <p class="stats"><b>idUtente: </b> ${segnalazioni.getUtente_id()}</p>
-                            </article>
-                        </div>
-                    </c:forEach>
+            <h2>Le tue informazioni:</h2>
+            <div class="row">
+                <div class="col-12">
+                    <article>
+                        <h3 class="stats"><b>NOME: </b> ${utente.getNome()}<b>  COGNOME: </b>${utente.getCognome()}</b></h3>
+                        <p class="stats"> DATA DI NASCITA:  ${utente.getDataDiNascita()}  CODICE FISCALE:  ${utente.getCf()}</p>
+                        <p class="stats"> SESSO:  ${utente.getSesso()}  EMAIL:  ${utente.getEmail()}</p>
+                        <p class="stats"> TELEFONO:  ${utente.getTelefono()}  GRUPPO SANGUIGNO:  ${utente.getGs()}</p>
+                        <p class="stats"> PATOLOGIE:  ${utente.getPatologie()}  FOTO UTENTE:  ${utente.getFoto()}</p>
+                    </article>
+                    <a href="AreaPersonaleServlet">Le tue informazioni non sono corrette? Modificale qua</a>
+                    <br>
+                    <a href="DonazioniEffettuateServlet">Visualizza le tue donazioni effettuate</a>
                 </div>
             </div>
+        </div>
     </body>
 </html>

@@ -32,7 +32,7 @@ public class SessioneDonazioneFactory {
 
         try {
             conn = DatabaseManager.getInstance().getDbConnection();
-            String query = "SELECT * FROM sessionedonazione";
+            String query = "SELECT * FROM sessionedonazione WHERE prenotata = FALSE";
             stmt = conn.prepareStatement(query);
             set = stmt.executeQuery();
 
@@ -41,7 +41,51 @@ public class SessioneDonazioneFactory {
                 sessione.setId(set.getLong("id"));
                 sessione.setOra_inizio(set.getTime("ora_inizio"));
                 sessione.setLuogo(set.getString("luogo"));
-                sessione.setData_sessione(set.getTime("data"));
+                sessione.setData_sessione(set.getDate("data"));
+                sessione.setOra_fine(set.getTime("ora_fine"));
+                sessioniDonazione.add(sessione);
+            }
+            return sessioniDonazione;
+        } catch (SQLException e) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+            try {
+                set.close();
+            } catch (Exception e) {
+            }
+            try {
+                stmt.close();
+            } catch (Exception e) {
+            }
+            try {
+                conn.close();
+            } catch (Exception e) {
+            }
+
+        }
+        return null;
+    }
+    
+        public List<SessioneDonazione> getAllSessioniUtente(Utente utente) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet set = null;
+        List<SessioneDonazione> sessioniDonazione = new ArrayList<>();
+
+        try {
+            conn = DatabaseManager.getInstance().getDbConnection();
+            String query = "SELECT * FROM sessionedonazione WHERE username = ? ";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, utente.getUsername());
+            set = stmt.executeQuery();
+
+            while (set.next()) {
+                SessioneDonazione sessione = new SessioneDonazione();
+                sessione.setId(set.getLong("id"));
+                sessione.setOra_inizio(set.getTime("ora_inizio"));
+                sessione.setLuogo(set.getString("luogo"));
+                sessione.setData_sessione(set.getDate("data"));
                 sessione.setOra_fine(set.getTime("ora_fine"));
                 sessioniDonazione.add(sessione);
             }
@@ -75,7 +119,7 @@ public class SessioneDonazioneFactory {
 
         try {
             conn = DatabaseManager.getInstance().getDbConnection();
-            String query = "SELECT * FROM recensione WHERE prenotata = 0 LIMIT 1 OFFSET ?";
+            String query = "SELECT * FROM sessionedonazione WHERE prenotata = FALSE LIMIT 1 OFFSET ?"; // CON LIMIT 1 PRENDO 1 SOLO ELEMENTO, OFFSET PERMETTE DI SALTARE ELEMENTI NELLA QUERY (WHERE prenotata = 0)
             stmt = conn.prepareStatement(query);
             stmt.setInt(1, Integer.parseInt(offset));
             set = stmt.executeQuery();
@@ -84,7 +128,7 @@ public class SessioneDonazioneFactory {
                 sessione.setId(set.getLong("id"));
                 sessione.setOra_inizio(set.getTime("ora_inizio"));
                 sessione.setLuogo(set.getString("luogo"));
-                sessione.setData_sessione(set.getTime("data"));
+                sessione.setData_sessione(set.getDate("data"));
                 sessione.setOra_fine(set.getTime("ora_fine"));
             }
             return sessione;
@@ -109,7 +153,8 @@ public class SessioneDonazioneFactory {
         }
         return null;
     }
-
+    
+    
     public static void setSessioneIntoDb(SessioneDonazione nuova_sessione) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -122,7 +167,7 @@ public class SessioneDonazioneFactory {
             stmt.setLong(1, nuova_sessione.getId());
             stmt.setTime(2, nuova_sessione.getOra_inizio());
             stmt.setString(3, nuova_sessione.getLuogo());
-            stmt.setTime(4, nuova_sessione.getData_sessione());
+            stmt.setDate(4, nuova_sessione.getData_sessione());
             stmt.setTime(5, nuova_sessione.getOra_fine());
             stmt.setBoolean(6, false);
             set = stmt.executeQuery();
@@ -145,5 +190,40 @@ public class SessioneDonazioneFactory {
             }
 
         }
+    }
+
+    public static boolean ModifySessioneIntoDb(SessioneDonazione sessione_prenotata, Utente utente) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet set = null;
+
+        try {
+            conn = DatabaseManager.getInstance().getDbConnection();
+            String query = "UPDATE sessionedonazione SET prenotata = TRUE, username = ? WHERE id = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, utente.getUsername());
+            stmt.setLong(2, sessione_prenotata.getId());
+            set = stmt.executeQuery();
+            return true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+            try {
+                set.close();
+            } catch (Exception e) {
+            }
+            try {
+                stmt.close();
+            } catch (Exception e) {
+            }
+            try {
+                conn.close();
+            } catch (Exception e) {
+            }
+
+        }
+        return false;
     }
 }

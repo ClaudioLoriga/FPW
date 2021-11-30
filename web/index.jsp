@@ -8,18 +8,23 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html>
     <head>
-        <title>ScooterCritic</title>
+        <title>AVIS</title>
         <meta name="author" content="ClaudioLoriga">
         <meta name="description" content="Il sito di recensioni di monopattini elettrici">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
-        <script type="text/javascript" src ="js/HomeSpecific.js"></script>
-
+        <script type="text/javascript" src ="js/jquery.js"></script>
+        <script type="text/javascript" src ="js/code.js"></script>
+        <
     </head>
     <body>
         <c:set var="page" value="index" scope="request"/>
         <jsp:include page="header.jsp"/>  
+        <c:if test="${empty sessione}">
+            <c:redirect url="home"/>
+        </c:if>
+        <c:if test="${not empty sessione}">
             <div id="intro">
                 <h2>Benvenuti!</h2>
                 <p>
@@ -40,13 +45,13 @@ and open the template in the editor.
                         <button id="prevReview"> < </button>
                     </div>
                     <div class="col-10">
-
+                        
                         <article>
-                            <h3 id="titoloRecensione" class="stats"> Sessione: Inizio ${sessione.getOra_inizio()} Fine ${sessione.getOra_fine()}</h3>
-                            <p id="commentoRecensione">Luogo: ${sessione.getLuogo()}</p>
-                            <p id="statisticheRecensione" class="stats"><b>Data: </b>${sessione.getData_sessione()}</p>
+                            <h3 id="orarioSessione" class="stats">Sessione: Inizio ${sessione.getOra_inizio()} Fine ${sessione.getOra_fine()}</h3>
+                            <p id="luogoSessione">Luogo: ${sessione.getLuogo()}</p>
+                            <p id="dataSessione" class="stats"><b>Data: </b>${sessione.getData_sessione()}</p>
                         </article>
-
+                        
                     </div>
                     <div class="col-1">
                         <button id="nextReview"> > </button>
@@ -61,6 +66,7 @@ and open the template in the editor.
                     <input type="submit" value="Carica Immagine"/>
                 </form>
             </div>
+        </c:if>
     </body>
 </html>
 

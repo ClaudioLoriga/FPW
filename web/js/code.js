@@ -1,18 +1,18 @@
 $(document).ready(function ()
 {
     var offset = 0;
-    $('#prevReview').click(function ()
+    $("#prevReview").click(function ()
     {
         if (offset > 0)
             offset--;
-        $.ajax({
+        $.ajax({// EFFETTUO UNA RICHIESTA AJAX CON PARAMETRO "home"
             url: "home",
             data: {
-                offsetId: offset
+                offsetId: offset // MANDERÀ offsetId (RENDENDOLO NON NULL NELLA SERVLET)
             },
-            dataType: "json",
-            success: function (data, state) {
-                aggiornaRecensione(data);
+            dataType: "json", // RICHIEDO UN RETURN DI TIPO "json"
+            success: function (data, state) { // SE LA RICHIESTA HA SUCCESSO, UTILIZZO I DATI (offset) E UTILIZZO LA FUNZIONE "aggiornaSessione"
+                aggiornaSessione(data);
             },
             error: function (data, state) {
 
@@ -20,7 +20,7 @@ $(document).ready(function ()
         });
     });
 
-    $('#nextReview').click(function ()
+    $("#nextReview").click(function ()
     {
         offset++;
         $.ajax({
@@ -30,25 +30,33 @@ $(document).ready(function ()
             },
             dataType: "json",
             success: function (data, state) {
-                if (data.user === "") {
+                if (data.luogo === "") { // SE IL SERVER RESTITUISCE UNA SESSIONE NON ESISTENTE (UNA SESSIONE VUOTA) RIPORTO L'OFFSET AL VALORE INIZIALE
                     offset--;
                 } else {
-                    aggiornaRecensione(data);
+                    aggiornaSessione(data);
                 }
             },
             error: function (data, state) {
-                
+
             }
         });
     });
-    
-    function aggiornaRecensione (recensione)
+
+    function aggiornaSessione(sessione)
     {
-        $('#titoloRecensione').html("Recensione di " + recensione.user + "del" + recensione.data);
-        $('#commentoRecensione').text(recensione.desc);
-        $('#statisticheRecensione').html("<b>Giudizio:</b>" + recensione.voto + "<b>Like:</b>" + recensione.like);
+        $("#orarioSessione").html("Sessione: Inizio " + sessione.ora_inizio + " Fine " + sessione.ora_fine);
+        $("#luogoSessione").html("Luogo: " + sessione.luogo);
+        $("#dataSessione").html("<b>Data: </b>" + sessione.data);
     }
 
+
+    $(document).on('click', '.btn', function () {
+
+        var name = $(this).data('username');
+        if (name != undefined && name != null) {
+            window.location = '/player_detail?username=' + name;
+        }
+    });
 
     $('#descrizioneRecensione').keydown(function (e) {
         var key = e.keycode || e.charcode;
@@ -63,6 +71,7 @@ $(document).ready(function ()
             this.style.color = "black";
         }
     });
+
     $('#descrizioneRecensione').keyup(function ()
     {
         $('#caratteriRimanenti').text("Caratteri: " + $(this).val().length + "/50");

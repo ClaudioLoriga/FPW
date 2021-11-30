@@ -13,7 +13,7 @@ public class Utente {
     private String cf;
     private String sesso;
     private String email;
-    private int telefono;
+    private String telefono;
     private String gs;
     private String patologie;
     private String foto;
@@ -52,7 +52,7 @@ public class Utente {
         return email;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
@@ -100,7 +100,7 @@ public class Utente {
         this.email = email;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

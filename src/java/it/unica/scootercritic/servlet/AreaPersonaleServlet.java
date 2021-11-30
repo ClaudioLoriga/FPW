@@ -1,42 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.unica.scootercritic.servlet;
 
-import it.unica.scootercritic.model.Recensione;
-import it.unica.scootercritic.model.RecensioneFactory;
-import it.unica.scootercritic.model.Segnalazione;
+//import it.unica.scootercritic.model.Segnalazione;
+import it.unica.scootercritic.model.Utente;
+import it.unica.scootercritic.model.UtenteFactory;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author fpw
- */
 @WebServlet(name = "AreaPersonaleServlet", urlPatterns = {"/AreaPersonaleServlet"})
 public class AreaPersonaleServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Segnalazione> segnalazioni = AreaPersonale.getInstance().getAllSegnalazioni();
-        request.setAttribute("listaSegnalazioni", segnalazioni);
+        Utente utente_loggato = (UtenteFactory.getInstance().getUtenteByUsernamePassword(request.getParameter("user"), request.getParameter("pass")));
+    
+        request.setAttribute("utenteLoggato", utente_loggato);
         request.getRequestDispatcher("areaPersonale.jsp").forward(request, response);
     }
 

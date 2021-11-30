@@ -5,23 +5,7 @@
  */
 package it.unica.scootercritic.servlet;
 
-import it.unica.scootercritic.db.DatabaseManager;
-import it.unica.scootercritic.model.Recensione;
-import it.unica.scootercritic.model.RecensioneFactory;
-import it.unica.scootercritic.model.Segnalazione;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,7 +31,7 @@ public class AreaPersonale extends HttpServlet {
         
     }
     
-    private static AreaPersonale instance;
+  /*  private static AreaPersonale instance;
 
     private AreaPersonale() {
     }
@@ -60,7 +44,6 @@ public class AreaPersonale extends HttpServlet {
     }
     
     public List<Segnalazione> getAllSegnalazioni() {
-        /*S C A L L O N I S I*/
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet set = null;
@@ -107,7 +90,9 @@ public class AreaPersonale extends HttpServlet {
 
         }
         return null;
+    
     }
+    */
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

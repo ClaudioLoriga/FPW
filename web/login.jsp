@@ -7,13 +7,13 @@ and open the template in the editor.
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
-        <title>ScooterCritic - Login</title>
-        <meta name="author" content="Valentino Artizzu">
+        <title>AVIS - Login</title>
+        <meta name="author" content="Claudio Loriga">
         <meta name="description" content="Accesso al sito">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
-
+        <script type="text/javascript" src ="js/code.js"></script>
     </head>
     <body>
         <div id="loginBoxUser">
@@ -28,8 +28,9 @@ and open the template in the editor.
             </form>
         </div>
         <div id="registrazioneFrase">
-            <a href="nuova-registrazione.jsp"> Non sei ancora registrato? Registrati ora!</a>
+            <h2>
+                <a href="nuova-registrazione.jsp"> Non sei ancora registrato? Registrati ora!</a>
+            </h2>
         </div>
-        <script type="text/javascript" src ="js/code.js"></script>
     </body>
 </html>

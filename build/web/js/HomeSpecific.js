@@ -6,7 +6,7 @@ $("boxSuggerimenti").keydown(function()
        $.ajax({
            url: "home",
            data: {
-               cmd: "listaMonopattini"
+               cmd: "lel"
            },
            dataType: "json",
            success: function(data, state) {
@@ -27,4 +27,5 @@ function popolaAutoCompletamento(lista)
         $("#listaDiMonopattini").append(elemento);
     });
 }
+
 

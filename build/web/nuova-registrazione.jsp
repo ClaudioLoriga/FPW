@@ -36,7 +36,6 @@
                 <select name="sesso_registrazione">
                     <option value="Maschio">Maschio</option>
                     <option value="Femmina">Femmina</option>
-                    <option value="Altro">Lesbica, Gay, Bisex, Trans, Queer, +</option>
                 </select>
                 <label for="email_registrazione">Inserisci la tua email</label>
                 <input type="text" id="email_registrazione" name="email_registrazione"/>

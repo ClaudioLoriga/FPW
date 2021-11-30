@@ -38,7 +38,7 @@ public class RegistrazioneServlet extends HttpServlet {
         String cf = request.getParameter("cf_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
         String sesso = request.getParameter("sesso_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
         String email = request.getParameter("email_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
-        int telefono = Integer.parseInt(request.getParameter("telefono_registrazione")); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
+        String telefono = request.getParameter("telefono_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
         String gs = request.getParameter("sanguigno_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
         String patologie = request.getParameter("patologie_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
         String immagine = request.getParameter("immagine_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
@@ -57,7 +57,7 @@ public class RegistrazioneServlet extends HttpServlet {
         utente.setFoto(immagine);
         registrazioneAvvenuta = UtenteFactory.setUtenteIntoDb(utente);
 
-        if (registrazioneAvvenuta) { // Verifica se le credenziali sono corrette
+        if (registrazioneAvvenuta) { 
             session.setAttribute("user", utente.getUsername()); // Imposta utente
             session.setAttribute("lastLogin", Utils.convertTime(session.getLastAccessedTime())); // Imposta last login
             session.setMaxInactiveInterval(30); // Tempo massimo di inattività (in secondi) prima che la sessione scada
