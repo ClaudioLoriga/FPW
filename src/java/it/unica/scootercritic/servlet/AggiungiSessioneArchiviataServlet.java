@@ -5,42 +5,40 @@
  */
 package it.unica.scootercritic.servlet;
 
-import java.io.IOException;
 import it.unica.scootercritic.model.SessioneDonazione;
 import it.unica.scootercritic.model.SessioneDonazioneFactory;
+import it.unica.scootercritic.model.Utente;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author fpw
  */
-@WebServlet(name = "PrenotazioneServlet", urlPatterns = {"/PrenotazioneServlet"})
-public class PrenotazioneServlet extends HttpServlet {
+@WebServlet(name = "AggiungiSessioneArchiviataServlet", urlPatterns = {"/AggiungiSessioneArchiviataServlet"})
+public class AggiungiSessioneArchiviataServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                                         
-        List<SessioneDonazione> sessioni = SessioneDonazioneFactory.getInstance().getAllSessioni();
-        SessioneDonazione sessioneSelezionata = new SessioneDonazione();
-        request.setAttribute("listaSessioni", sessioni);
-        request.setAttribute("sessioneSelezionata", sessioneSelezionata);
-        request.getRequestDispatcher("nuova-prenotazione.jsp").forward(request, response);
 
-        String command = request.getParameter("offsetId");
-        if (command != null) {
-            SessioneDonazione sessione = SessioneDonazioneFactory.getInstance().getSessione(command);
-            request.setAttribute("sessione", sessione);
-            response.setContentType("application/json");
-            response.setHeader("Expires", "Sat, 6 May 1995 12:00:00 GMT");
-            response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
-            request.getRequestDispatcher("sessioneJSON.jsp").forward(request, response);
-        }
-        
+        boolean sessione_modificata;
+        String genericError = "Qualcosa è andato storto, riprova";
+        List<SessioneDonazione> sessioniDonazione;
+
+        HttpSession session = request.getSession(); // Crea una nuova sessione o recpera quella esistente
+        Utente utente_sessione = (Utente) session.getAttribute("utente");
+        sessioniDonazione = SessioneDonazioneFactory.getInstance().getAllSessioniUtente(utente_sessione);
+
+        SessioneDonazione sessione_prenotata = new SessioneDonazione();
+        sessione_prenotata.setId(Long.parseLong(request.getParameter("idSessione")));
+        sessione_modificata = SessioneDonazioneFactory.ModifySessioneIntoDb(sessione_prenotata, utente_sessione);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

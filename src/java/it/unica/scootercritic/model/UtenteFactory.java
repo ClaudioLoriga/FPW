@@ -77,7 +77,6 @@ public class UtenteFactory {
     public static boolean setUtenteIntoDb(Utente nuovo_utente) { 
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet set = null;
 
         try {
             conn = DatabaseManager.getInstance().getDbConnection();
@@ -95,18 +94,13 @@ public class UtenteFactory {
             stmt.setString(10, nuovo_utente.getFoto());
             stmt.setDate(11, nuovo_utente.getDataDiNascita());
             stmt.setString(12, nuovo_utente.getTelefono());
-            //System.out.println(stmt);
-            set = stmt.executeQuery();
+            stmt.executeUpdate();
             return true;
 
         } catch (SQLException e) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, e);
 
         } finally {
-            try {
-                set.close();
-            } catch (Exception e) {
-            }
             try {
                 stmt.close();
             } catch (Exception e) {
@@ -118,6 +112,36 @@ public class UtenteFactory {
         }
         return false;
     }
+    
+        public static boolean DeleteUtenteFromDb(Utente old_utente) { 
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = DatabaseManager.getInstance().getDbConnection();
+            String query = "DELETE FROM utente WHERE username = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, old_utente.getUsername());
+            stmt.executeUpdate();
+            return true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+            try {
+                stmt.close();
+            } catch (Exception e) {
+            }
+            try {
+                conn.close();
+            } catch (Exception e) {
+            }
+        }
+        return false;
+    }
+    
+    
     
         /*public static boolean ModifyUtenteIntoDb(Utente utente, ) { 
         Connection conn = null;

@@ -23,14 +23,14 @@ public class PrenotaSessioneServlet extends HttpServlet {
         String errorePrenotazione = "La prenotazione non è avvenuta correttamente";
         String donazioniMassimeRaggiunte = "Hai raggiunto il numero massimo di donazioni annuali";
         String genericError = "Qualcosa è andato storto, riprova";
-        List<SessioneDonazione> SessioniDonazione = new ArrayList<>();
+        List<SessioneDonazione> sessioniDonazione;
 
         HttpSession session = request.getSession(); // Crea una nuova sessione o recpera quella esistente
         Utente utente_sessione = (Utente) session.getAttribute("utente");
-        SessioniDonazione = SessioneDonazioneFactory.getInstance().getAllSessioniUtente(utente_sessione);
+        sessioniDonazione = SessioneDonazioneFactory.getInstance().getAllSessioniUtente(utente_sessione);
 
         if (utente_sessione.getSesso().equals("Maschio")) {
-            if (SessioniDonazione.size() <= 3) {
+            if (sessioniDonazione.size() <= 3) {
                 SessioneDonazione sessione_prenotata = new SessioneDonazione();
                 sessione_prenotata.setId(Long.parseLong(request.getParameter("idSessione")));
                 sessione_modificata = SessioneDonazioneFactory.ModifySessioneIntoDb(sessione_prenotata, utente_sessione);
@@ -47,7 +47,7 @@ public class PrenotaSessioneServlet extends HttpServlet {
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
         } else if (utente_sessione.getSesso().equals("Femmina")) {
-            if (SessioniDonazione.size() <= 1) {
+            if (sessioniDonazione.size() <= 1) {
                 SessioneDonazione sessione_prenotata = new SessioneDonazione();
                 sessione_prenotata.setId(Long.parseLong(request.getParameter("idSessione")));
                 sessione_modificata = SessioneDonazioneFactory.ModifySessioneIntoDb(sessione_prenotata, utente_sessione);

@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 
             Utente utente = UtenteFactory.getInstance().getUtenteByUsernamePassword(user, pass);
 
-            if (user.contentEquals("Loriga") && pass.contentEquals("65804")) // ACCESSO COME AMMINISTRATORE 
+           /* if (user.contentEquals("Loriga") && pass.contentEquals("65804")) // ACCESSO COME AMMINISTRATORE 
             {
                 session.setAttribute("user", utente.getUsername()); // Imposta utente username
                 session.setAttribute("utente", utente);
@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
                 session.setMaxInactiveInterval(600); // Tempo massimo di inattività (in secondi) prima che la sessione scada
                 response.sendRedirect("home"); // Redirect alla servlet user
             }
-
+*/
             if (utente != null) { // Verifica se le credenziali sono corrette
                 session.setAttribute("user", utente.getUsername()); // Imposta utente username
                 session.setAttribute("utente", utente);

@@ -80,6 +80,14 @@ nav ul, nav li{
     text-decoration: underline;
 }
 
+.hide
+{
+    position: absolute;
+    top: 120px;
+    left: 250px;
+    z-index: 0;
+}
+
 a:link{
     font-size: 20px;
     text-decoration: none;

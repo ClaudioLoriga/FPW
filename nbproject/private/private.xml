@@ -6,6 +6,9 @@
             <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/model/UtenteFactory.java</file>
             <file>file:/home/fpw/GitKraken/FPW/web/areaPersonale.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/web/style.css</file>
+            <file>file:/home/fpw/GitKraken/FPW/web/prenotazione_effettuata.jsp</file>
+            <file>file:/home/fpw/GitKraken/FPW/web/modificaEffettuata.jsp</file>
+            <file>file:/home/fpw/GitKraken/FPW/web/header.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/web/fileInserito.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/RegistrazioneServlet.java</file>
             <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/AreaPersonaleServlet.java</file>
@@ -17,11 +20,12 @@
             <file>file:/home/fpw/GitKraken/FPW/web/nuova-prenotazione.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/model/SessioneDonazione.java</file>
             <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/ListaImmaginiServlet.java</file>
+            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/ModificaUtenteServlet.java</file>
             <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/PrenotazioneServlet.java</file>
             <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/model/SessioneDonazioneFactory.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/prenotazione_effetuata.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/web/suggerimentiJSON.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/DonazioniEffettuateServlet.java</file>
+            <file>file:/home/fpw/GitKraken/FPW/web/modifica-utente.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/web/recensioneJSON.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/LoginServlet.java</file>
             <file>file:/home/fpw/GitKraken/FPW/web/login.jsp</file>

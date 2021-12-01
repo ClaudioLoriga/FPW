@@ -41,9 +41,11 @@
                         <p class="stats"> TELEFONO:  ${utente.getTelefono()}  GRUPPO SANGUIGNO:  ${utente.getGs()}</p>
                         <p class="stats"> PATOLOGIE:  ${utente.getPatologie()}  FOTO UTENTE:  ${utente.getFoto()}</p>
                     </article>
-                    <a href="AreaPersonaleServlet">Le tue informazioni non sono corrette? Modificale qua</a>
+                    <c:if test="${user != 'Loriga'}">
+                    <a href="modifica-utente.jsp">Le tue informazioni non sono corrette? Modificale qua</a>
                     <br>
                     <a href="DonazioniEffettuateServlet">Visualizza le tue donazioni effettuate</a>
+                    </c:if>
                 </div>
             </div>
         </div>
