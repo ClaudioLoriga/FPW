@@ -9,6 +9,8 @@ public class DonazioneArchiviata {
     private Date data_sessione;
     private String qsp;
     private String note;
+    
+    public DonazioneArchiviata() {}
 
     public long getId() {
         return id;

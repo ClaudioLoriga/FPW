@@ -122,6 +122,23 @@ $(document).ready(function ()
 }
 );
 
+/*$("#button_archivia").click(function () {
+    $("#creaSessioneDaArchiviare.jsp").submit();
+});
+
+$("#button_eliminia").click(function () {
+    $("#EliminaSessioneDonazione").submit();
+});
+*/
+$('#button_archivia').click(function(){
+   window.location.href='creaSessioneDaArchiviare.jsp';
+});
+
+$('#button_elimina').click(function(){
+   window.location.href='EliminaSessioneDonazione';
+});
+
+
 /* var avvisoLogin = document.createElement("p");
  avvisoLogin.id = "messaggioErroreLogin";
  var testoLogin = document.createTextNode("Non hai inserito sufficenti caratteri!");

@@ -5,13 +5,15 @@
  */
 package it.unica.scootercritic.servlet;
 
+import it.unica.scootercritic.model.SessioneDonazione;
+import it.unica.scootercritic.model.SessioneDonazioneFactory;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -20,33 +22,28 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "EliminaSessioneDonazione", urlPatterns = {"/EliminaSessioneDonazione"})
 public class EliminaSessioneDonazione extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet EliminaSessioneDonazione</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet EliminaSessioneDonazione at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+        boolean sessione_eliminata;
+        String genericError = "Qualcosa è andato storto, riprova";
+        SessioneDonazione sessioneDonazione = new SessioneDonazione();
+
+        HttpSession session = request.getSession(); // Crea una nuova sessione o recpera quella esistente
+
+        sessioneDonazione.setId(Long.parseLong(request.getParameter("idSessione")));
+        sessione_eliminata = SessioneDonazioneFactory.DeleteSessioneFromDb(sessioneDonazione);
+        if (sessione_eliminata) {
+            request.getRequestDispatcher("sessioneEliminata.jsp").forward(request, response);
+        } else {
+            request.setAttribute("errorMessage", genericError);
+            request.setAttribute("link", "login.jsp");
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -84,5 +81,4 @@ public class EliminaSessioneDonazione extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

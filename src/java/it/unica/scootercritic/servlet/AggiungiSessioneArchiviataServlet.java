@@ -5,11 +5,15 @@
  */
 package it.unica.scootercritic.servlet;
 
+import it.unica.scootercritic.model.DonazioneArchiviata;
+import it.unica.scootercritic.model.DonazioneArchiviataFactory;
 import it.unica.scootercritic.model.SessioneDonazione;
 import it.unica.scootercritic.model.SessioneDonazioneFactory;
 import it.unica.scootercritic.model.Utente;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,17 +32,40 @@ public class AggiungiSessioneArchiviataServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        boolean sessione_modificata;
+        boolean sessione_archiviata, sessione_rimossa;
         String genericError = "Qualcosa è andato storto, riprova";
-        List<SessioneDonazione> sessioniDonazione;
+        DonazioneArchiviata sessione_da_archiviare = new DonazioneArchiviata();
+        SessioneDonazione sessione_da_rimuovere = new SessioneDonazione();
+        String x = request.getParameter("idSessione");
 
         HttpSession session = request.getSession(); // Crea una nuova sessione o recpera quella esistente
-        Utente utente_sessione = (Utente) session.getAttribute("utente");
-        sessioniDonazione = SessioneDonazioneFactory.getInstance().getAllSessioniUtente(utente_sessione);
+        String utente = request.getParameter("utente_sessione");
+        String data_grezza = request.getParameter("data_sessione");
+        Date data;
+        try {
+            data = new SimpleDateFormat("dd/MM/yyyy").parse(data_grezza);
+        } catch (ParseException e) {
+            data = new Date(0L);
+        }
+        String qsp = request.getParameter("qsp_sessione");
+        String note_sessione = request.getParameter("note_sessione");
+        sessione_da_archiviare.setUsername(utente);
+        sessione_da_archiviare.setData_sessione(new java.sql.Date(data.getTime()));
+        sessione_da_archiviare.setQsp(qsp);
+        sessione_da_archiviare.setNote(note_sessione);
+        sessione_archiviata = DonazioneArchiviataFactory.setSessioneIntoDb(sessione_da_archiviare);
 
-        SessioneDonazione sessione_prenotata = new SessioneDonazione();
-        sessione_prenotata.setId(Long.parseLong(request.getParameter("idSessione")));
-        sessione_modificata = SessioneDonazioneFactory.ModifySessioneIntoDb(sessione_prenotata, utente_sessione);
+        sessione_da_rimuovere.setId(Long.parseLong(request.getParameter("idSessione")));
+        sessione_rimossa = SessioneDonazioneFactory.DeleteSessioneFromDb(sessione_da_rimuovere);
+
+        if (sessione_archiviata && sessione_rimossa) {
+            request.getRequestDispatcher("sessioneArchiviata.jsp").forward(request, response);
+        } else {
+            request.setAttribute("errorMessage", genericError);
+            request.setAttribute("link", "login.jsp");
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

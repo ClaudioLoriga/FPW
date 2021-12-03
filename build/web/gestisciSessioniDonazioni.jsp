@@ -21,20 +21,24 @@
                 <c:redirect url="GestisciSessioniDonazioniServlet"/>
             </c:if>
             <c:if test="${not empty listaSessioni}">
-                <h1>Sessioni del giorno</h1>          
-                <form action="PrenotaSessioneServlet" method="post">
-                    <c:forEach items="${listaSessioni}" var="sessione">
-                        <div class="col-12">
-                            <article>
-                                <h3 id="orarioSessione" class="stats">Sessione: Inizio ${sessione.getOra_inizio()} Fine ${sessione.getOra_fine()}</h3>
-                                <p id="luogoSessione">Luogo: ${sessione.getLuogo()}</p>
-                                <p id="dataSessione" class="stats"><b>Data: </b>${sessione.getData_sessione()}</p>
+                <h1>Sessioni del giorno </h1>          
+                <c:forEach items="${listaSessioni}" var="sessione">
+                    <div class="col-12">
+                        <article>
+                            <h3 id="orarioSessione" class="stats">Sessione: Inizio ${sessione.getOra_inizio()} Fine ${sessione.getOra_fine()}</h3>
+                            <p id="luogoSessione">Luogo: ${sessione.getLuogo()}</p>
+                            <p id="dataSessione" class="stats"><b>Data: </b>${sessione.getData_sessione()}</p>
+                            <form action="creaSessioneDaArchiviare.jsp" method="post">
                                 <input type="hidden" name="idSessione" id="idSessione" value="${sessione.getId()}">
-                                <input type="submit" value ="Prenota">
-                            </article>
-                        </c:forEach>
-                    </div>
-                </form>
+                                <input type="submit" value ="Archivia">
+                            </form>
+                            <form action="EliminaSessioneDonazione" method="post">
+                                <input type="hidden" name="idSessione" id="idSessione" value="${sessione.getId()}">
+                                <input type="submit" value ="Elimina">
+                            </form>
+                        </article>
+                    </c:forEach>
+                </div>
             </c:if>
         </c:if>
 </html>

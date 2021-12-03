@@ -29,7 +29,7 @@ public class ModificaUtenteServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        boolean registrazioneAvvenuta;
+        boolean modificaAvvenuta;
         String erroreRegistrazione = "La registrazione non è avvenuta";
         HttpSession session = request.getSession(); // Crea una nuova sessione o recpera quella esistente
 
@@ -65,9 +65,9 @@ public class ModificaUtenteServlet extends HttpServlet {
         modified_utente.setPatologie(patologie);
         modified_utente.setFoto(immagine);
         UtenteFactory.DeleteUtenteFromDb(old_utente);
-        registrazioneAvvenuta = UtenteFactory.setUtenteIntoDb(modified_utente);
+        modificaAvvenuta = UtenteFactory.setUtenteIntoDb(modified_utente);
 
-        if (registrazioneAvvenuta) {
+        if (modificaAvvenuta) {
             session.setAttribute("utente", modified_utente);
             session.setAttribute("user", modified_utente.getUsername()); // Imposta utente
             session.setAttribute("lastLogin", Utils.convertTime(session.getLastAccessedTime())); // Imposta last login

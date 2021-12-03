@@ -30,7 +30,7 @@ public class DonazioneArchiviataFactory {
 
         try {
             conn = DatabaseManager.getInstance().getDbConnection();
-            String query = "INSERT INTO donazionearchiviata VALUES" + "(default,?,?,?,?)";
+            String query = "INSERT INTO donazioniarchiviate VALUES" + "(default,?,?,?,?)";
             stmt = conn.prepareStatement(query);
             stmt.setString(1, donazione_da_archiviare.getUsername());
             stmt.setDate(2, donazione_da_archiviare.getData_sessione());
