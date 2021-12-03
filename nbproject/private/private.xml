@@ -5,6 +5,7 @@
         <group>
             <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/model/UtenteFactory.java</file>
             <file>file:/home/fpw/GitKraken/FPW/web/areaPersonale.jsp</file>
+            <file>file:/home/fpw/GitKraken/FPW/web/js/HomeSpecific.js</file>
             <file>file:/home/fpw/GitKraken/FPW/web/prenotazione_effettuata.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/web/inserimentoEffettuato.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/web/fileInserito.jsp</file>
@@ -29,6 +30,7 @@
             <file>file:/home/fpw/GitKraken/FPW/web/sceltaGiornoSessioni.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/web/chi-siamo.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/web/style.css</file>
+            <file>file:/home/fpw/GitKraken/FPW/web/visualizzaDonatori.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/web/modificaEffettuata.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/web/header.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/web/sessioneArchiviata.jsp</file>
@@ -36,6 +38,7 @@
             <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/model/DonazioneArchiviata.java</file>
             <file>file:/home/fpw/GitKraken/FPW/web/sessioneEliminata.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/HomeServlet.java</file>
+            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/VisualizzaDonatoriServlet.java</file>
             <file>file:/home/fpw/GitKraken/FPW/web/creaSessioneDonazione.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/web/sessioneJSON.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/model/DonazioneArchiviataFactory.java</file>

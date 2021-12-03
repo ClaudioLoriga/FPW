@@ -11,34 +11,31 @@
         <script type="text/javascript" src ="js/jquery.js"></script>
     </head>
     <body>
-    <c:set var="page" value="gestisciSessioniDonazioni" scope="request"/>
-    <jsp:include page="header.jsp"/>
-    <c:if test="${user != 'Loriga'}">
-        <c:redirect url="index.jsp"/>
-    </c:if>
-    <c:if test="${user == 'Loriga'}">
-        <c:if test="${empty listaSessioni}">
-            <c:redirect url="GestisciSessioniDonazioniServlet"/>
+        <c:set var="page" value="visualizzaDonatori" scope="request"/>
+        <jsp:include page="header.jsp"/>
+        <c:if test="${user != 'Loriga'}">
+            <c:redirect url="index.jsp"/>
         </c:if>
-        <c:if test="${not empty listaSessioni}">
-            <h1>Sessioni del giorno </h1>          
-            <c:forEach items="${listaSessioni}" var="sessione">
-                <div class="col-12">
-                    <article>
-                        <h3 id="orarioSessione" class="stats">Sessione: Inizio ${sessione.getOra_inizio()} Fine ${sessione.getOra_fine()}</h3>
-                        <p id="luogoSessione">Luogo: ${sessione.getLuogo()}</p>
-                        <p id="dataSessione" class="stats"><b>Data: </b>${sessione.getData_sessione()}</p>
-                        <form action="creaSessioneDaArchiviare.jsp" method="post">
-                            <input type="hidden" name="idSessione" id="idSessione" value="${sessione.getId()}">
-                            <input type="submit" value ="Archivia">
-                        </form>
-                        <form action="EliminaSessioneDonazione" method="post">
-                            <input type="hidden" name="idSessione" id="idSessione" value="${sessione.getId()}">
-                            <input type="submit" value ="Elimina">
-                        </form>
-                    </article>
-            </c:forEach>
-            </div>
+        <c:if test="${user == 'Loriga'}">
+            <c:if test="${empty listaUtenti}">
+                <c:redirect url="VisualizzaDonatoriServlet"/>
+            </c:if>
+            <c:if test="${not empty listaUtenti}">
+                <h1>Donatori registrati </h1>       
+                <c:forEach items="${listaUtenti}" var="utente">
+                    <c:forEach items="${numDonazioni}" var="num_donazione">
+                        <div class="col-12">
+                            <article>
+                                <h3 class="stats"><b>NOME: </b> ${utente.getNome()}<b>  COGNOME: </b>${utente.getCognome()}</b></h3>
+                                <p class="stats"> DATA DI NASCITA:  ${utente.getDataDiNascita()}  CODICE FISCALE:  ${utente.getCf()}</p>
+                                <p class="stats"> SESSO:  ${utente.getSesso()}  EMAIL:  ${utente.getEmail()}</p>
+                                <p class="stats"> TELEFONO:  ${utente.getTelefono()}  GRUPPO SANGUIGNO:  ${utente.getGs()}</p>
+                                <p class="stats"> PATOLOGIE:  ${utente.getPatologie()}  FOTO UTENTE:  ${utente.getFoto()}</p>
+                                <p class="stats"> NUM_DONAZIONI:  ${num_donazione} </p> 
+                            </article>
+                        </c:forEach>
+                    </c:forEach>
+                </div>
+            </c:if>
         </c:if>
-    </c:if>
 </html>

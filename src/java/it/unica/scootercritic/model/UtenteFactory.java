@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -74,7 +76,57 @@ public class UtenteFactory {
         return null;
     }
 
-    public static boolean setUtenteIntoDb(Utente nuovo_utente) { 
+    public static List<Utente> getAllUtenti() {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet set = null;
+        List<Utente> utenti = new ArrayList<>();
+
+        try {
+            conn = DatabaseManager.getInstance().getDbConnection();
+
+            String query = "SELECT * FROM utente";
+            stmt = conn.prepareStatement(query);
+            set = stmt.executeQuery();
+
+            while (set.next()) {
+                Utente utente = new Utente();
+                utente.setUsername(set.getString("username"));
+                utente.setPassword(set.getString("password"));
+                utente.setNome(set.getString("nome"));
+                utente.setCognome(set.getString("cognome"));
+                utente.setCf(set.getString("codice_fiscale"));
+                utente.setSesso(set.getString("sesso"));
+                utente.setEmail(set.getString("email"));
+                utente.setTelefono(set.getString("telefono"));
+                utente.setGs(set.getString("gruppo_sanguigno"));
+                utente.setPatologie(set.getString("patologie"));
+                utente.setFoto(set.getString("foto"));
+                utente.setDataDiNascita(set.getDate("data"));
+                utenti.add(utente);
+            }
+            return utenti;
+        } catch (SQLException e) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+            try {
+                set.close();
+            } catch (Exception e) {
+            }
+            try {
+                stmt.close();
+            } catch (Exception e) {
+            }
+            try {
+                conn.close();
+            } catch (Exception e) {
+            }
+        }
+        return null;
+    }
+
+    public static boolean setUtenteIntoDb(Utente nuovo_utente) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
@@ -112,8 +164,8 @@ public class UtenteFactory {
         }
         return false;
     }
-    
-        public static boolean DeleteUtenteFromDb(Utente old_utente) { 
+
+    public static boolean DeleteUtenteFromDb(Utente old_utente) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
@@ -140,10 +192,8 @@ public class UtenteFactory {
         }
         return false;
     }
-    
-    
-    
-        /*public static boolean ModifyUtenteIntoDb(Utente utente, ) { 
+
+    /*public static boolean ModifyUtenteIntoDb(Utente utente, ) { 
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet set = null;
@@ -187,5 +237,5 @@ public class UtenteFactory {
         }
         return false;
     }
-*/
+     */
 }
