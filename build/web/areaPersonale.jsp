@@ -39,12 +39,13 @@
                         <p class="stats"> DATA DI NASCITA:  ${utente.getDataDiNascita()}  CODICE FISCALE:  ${utente.getCf()}</p>
                         <p class="stats"> SESSO:  ${utente.getSesso()}  EMAIL:  ${utente.getEmail()}</p>
                         <p class="stats"> TELEFONO:  ${utente.getTelefono()}  GRUPPO SANGUIGNO:  ${utente.getGs()}</p>
-                        <p class="stats"> PATOLOGIE:  ${utente.getPatologie()}  FOTO UTENTE:  ${utente.getFoto()}</p>
+                        <p class="stats"> PATOLOGIE:  ${utente.getPatologie()}    </p>
+                        <c:if test="${utente.getFoto() != null}"><p><img src="img/${utente.getFoto()}"></p></c:if>
                     </article>
                     <c:if test="${user != 'Loriga'}">
-                    <a href="modifica-utente.jsp">Le tue informazioni non sono corrette? Modificale qua</a>
-                    <br>
-                    <a href="DonazioniEffettuateServlet">Visualizza le tue donazioni effettuate</a>
+                        <a href="modifica-utente.jsp">Le tue informazioni non sono corrette? Modificale qua</a>
+                        <br>
+                        <a href="DonazioniEffettuateServlet">Visualizza le tue donazioni effettuate</a>
                     </c:if>
                 </div>
             </div>

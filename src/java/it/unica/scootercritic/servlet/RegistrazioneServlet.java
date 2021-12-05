@@ -59,6 +59,7 @@ public class RegistrazioneServlet extends HttpServlet {
 
         if (registrazioneAvvenuta) { 
             session.setAttribute("user", utente.getUsername()); // Imposta utente
+            session.setAttribute("utente", utente);
             session.setAttribute("lastLogin", Utils.convertTime(session.getLastAccessedTime())); // Imposta last login
             session.setMaxInactiveInterval(30); // Tempo massimo di inattività (in secondi) prima che la sessione scada
             request.getRequestDispatcher("registrazioneEffettuata.jsp").forward(request, response);
