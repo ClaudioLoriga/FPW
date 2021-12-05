@@ -17,22 +17,29 @@
             <c:redirect url="index.jsp"/>
         </c:if>
         <c:if test="${user == 'Loriga'}">
-            <c:if test="${empty listaUtenti}">
+            <c:if test="${empty utentiConDonazione}">
                 <c:redirect url="VisualizzaDonatoriServlet"/>
             </c:if>
-            <c:if test="${not empty listaUtenti}">
+            <c:if test="${not empty utentiConDonazione}">
                 <h1>Donatori registrati </h1>       
-                <c:forEach items="${listaUtenti}" var="utente" varStatus="loop">
+                <select name="tipo_ordine" id="tipo_ordine" onchange="location.reload()">
+                    <option value="0">Cognome A-Z</option>
+                    <option value="1">Cognome Z-A</option>
+                    <option value="2">Donazioni Crescente</option>
+                    <option value="3">Donazione Decrescente</option>
+                </select>
+                <c:forEach items="${utentiConDonazione}" var="utenteConDonazione">
                     <div class="col-12">
                         <article>
-                            <h3 class="stats"><b>NOME: </b> ${utente.getNome()}<b>  COGNOME: </b>${utente.getCognome()}</b></h3>
-                            <p class="stats"> DATA DI NASCITA:  ${utente.getDataDiNascita()}  CODICE FISCALE:  ${utente.getCf()}</p>
-                            <p class="stats"> SESSO:  ${utente.getSesso()}  EMAIL:  ${utente.getEmail()}</p>
-                            <p class="stats"> TELEFONO:  ${utente.getTelefono()}  GRUPPO SANGUIGNO:  ${utente.getGs()}</p>
-                            <p class="stats"> PATOLOGIE:  ${utente.getPatologie()}  FOTO UTENTE:  ${utente.getFoto()}</p>
-                            <p class="stats"> NUM_DONAZIONI:  ${numDonazioni[loop.index]} </p> 
-                        </article>
-                    </div>
+                            <h3 class="stats"><b>NOME: </b> ${utenteConDonazione.utente.getNome()}<b>  COGNOME: </b>${utenteConDonazione.utente.getCognome()}</b></h3>
+                            <p class="stats"> DATA DI NASCITA:  ${utenteConDonazione.utente.getDataDiNascita()}  CODICE FISCALE:  ${utenteConDonazione.utente.getCf()}</p>
+                            <p class="stats"> SESSO:  ${utenteConDonazione.utente.getSesso()}  EMAIL:  ${utenteConDonazione.utente.getEmail()}</p>
+                            <p class="stats"> TELEFONO:  ${utenteConDonazione.utente.getTelefono()}  GRUPPO SANGUIGNO:  ${utenteConDonazione.utente.getGs()}</p>
+                            <p class="stats"> PATOLOGIE:  ${utenteConDonazione.utente.getPatologie()}</p>
+                            <p class="stats"> NUM_DONAZIONI:  ${utenteConDonazione.numeroDonazioni} </p> 
+                            <c:if test="${utenteConDonazione.utente.getFoto() != null}"><p><img src="img/${utenteConDonazione.utente.getFoto()}"></p></c:if>
+                            </article>
+                        </div>
                 </c:forEach>
             </c:if>
         </c:if>

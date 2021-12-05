@@ -162,7 +162,7 @@ public class SessioneDonazioneFactory {
 
         try {
             conn = DatabaseManager.getInstance().getDbConnection();
-            String query = "SELECT * FROM sessionedonazione WHERE data = ? ";
+            String query = "SELECT * FROM sessionedonazione WHERE data = ? AND username IS NOT NULL";
             stmt = conn.prepareStatement(query);
             stmt.setDate(1, giorno_scelto.getData_sessione());
             set = stmt.executeQuery();

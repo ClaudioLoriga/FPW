@@ -281,7 +281,7 @@ tr:nth-child(even)
     }
     article
     {
-        height: auto;
+        height: 500px;
     }
 
     img[title=Logo]

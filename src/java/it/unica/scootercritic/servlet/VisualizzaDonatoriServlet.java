@@ -3,7 +3,10 @@ package it.unica.scootercritic.servlet;
 import it.unica.scootercritic.model.SessioneDonazione;
 import it.unica.scootercritic.model.SessioneDonazioneFactory;
 import it.unica.scootercritic.model.Utente;
+import it.unica.scootercritic.model.UtenteConDonazione;
 import it.unica.scootercritic.model.UtenteFactory;
+import it.unica.scootercritic.utils.sort.SortCognome;
+import it.unica.scootercritic.utils.sort.SortDonazioni;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +15,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 
 @WebServlet(name = "VisualizzaDonatoriServlet", urlPatterns = {"/VisualizzaDonatoriServlet"})
 public class VisualizzaDonatoriServlet extends HttpServlet {
@@ -21,19 +22,39 @@ public class VisualizzaDonatoriServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession(); // Crea una nuova sessione o recpera quella esistente
-        Utente utente = (Utente) session.getAttribute("utente");
+        String sceltaString = (String) request.getAttribute("tipo_ordine");
+        int sceltaOrdinamento = (sceltaString != null) ? Integer.parseInt(sceltaString) : 0;
+
         List<Utente> utenti = UtenteFactory.getAllUtenti();
-        List<SessioneDonazione> sessioni = new ArrayList<>();
-        int[] num_donazioni = new int[utenti.size()];
+        List<UtenteConDonazione> utentiConDonazione = new ArrayList<>();
 
         for (int i = 0; i < utenti.size(); i++) {
-            sessioni = SessioneDonazioneFactory.getInstance().getAllSessioniUtente(utenti.get(i));
-            num_donazioni[i] = sessioni.size();
+            List<SessioneDonazione> sessioni = SessioneDonazioneFactory.getInstance().getAllSessioniUtente(utenti.get(i));
+            UtenteConDonazione nuovoUtente = new UtenteConDonazione(utenti.get(i), sessioni.size());
+
+            utentiConDonazione.add(nuovoUtente);
         }
 
-        request.setAttribute("numDonazioni", num_donazioni);
-        request.setAttribute("listaUtenti", utenti);
+        switch (sceltaOrdinamento) {
+            case 1:
+                //Z-A
+                utentiConDonazione.sort(new SortCognome().reversed());
+                break;
+            case 2:
+                //Donazioni crescente
+                utentiConDonazione.sort(new SortDonazioni());
+                break;
+            case 3:
+                //Donazioni decrescente
+                utentiConDonazione.sort(new SortDonazioni().reversed());
+                break;
+            default:
+                // A-Z
+                utentiConDonazione.sort(new SortCognome());
+                break;
+        }
+
+        request.setAttribute("utentiConDonazione", utentiConDonazione);
         request.getRequestDispatcher("visualizzaDonatori.jsp").forward(request, response);
 
     }

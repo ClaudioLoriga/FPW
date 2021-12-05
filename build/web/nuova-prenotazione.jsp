@@ -37,8 +37,8 @@
                             <input type="hidden" name="idSessione" id="idSessione" value="${sessione.getId()}">
                             <input type="submit" value ="Prenota">
                         </article>
-                    </c:forEach>
-                </div>
+                    </div>
+                </c:forEach>
             </form>
         </c:if>
     </body>

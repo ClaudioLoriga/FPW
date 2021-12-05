@@ -25,6 +25,7 @@
                 <c:forEach items="${listaSessioni}" var="sessione">
                     <div class="col-12">
                         <article>
+                            <p class="stats"><b>  Nome:  </b> ${utente.getNome()}<b>  Cognome:  </b>${utente.getCognome()}</p>
                             <h3 id="orarioSessione" class="stats">Sessione: Inizio ${sessione.getOra_inizio()} Fine ${sessione.getOra_fine()}</h3>
                             <p id="luogoSessione">Luogo: ${sessione.getLuogo()}</p>
                             <p id="dataSessione" class="stats"><b>Data: </b>${sessione.getData_sessione()}</p>

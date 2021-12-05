@@ -36,7 +36,6 @@ public class AggiungiSessioneArchiviataServlet extends HttpServlet {
         String genericError = "Qualcosa è andato storto, riprova";
         DonazioneArchiviata sessione_da_archiviare = new DonazioneArchiviata();
         SessioneDonazione sessione_da_rimuovere = new SessioneDonazione();
-        String x = request.getParameter("idSessione");
 
         HttpSession session = request.getSession(); // Crea una nuova sessione o recpera quella esistente
         String utente = request.getParameter("utente_sessione");
