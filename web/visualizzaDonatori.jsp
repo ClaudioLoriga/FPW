@@ -22,20 +22,18 @@
             </c:if>
             <c:if test="${not empty listaUtenti}">
                 <h1>Donatori registrati </h1>       
-                <c:forEach items="${listaUtenti}" var="utente">
-                    <c:forEach items="${numDonazioni}" var="num_donazione">
-                        <div class="col-12">
-                            <article>
-                                <h3 class="stats"><b>NOME: </b> ${utente.getNome()}<b>  COGNOME: </b>${utente.getCognome()}</b></h3>
-                                <p class="stats"> DATA DI NASCITA:  ${utente.getDataDiNascita()}  CODICE FISCALE:  ${utente.getCf()}</p>
-                                <p class="stats"> SESSO:  ${utente.getSesso()}  EMAIL:  ${utente.getEmail()}</p>
-                                <p class="stats"> TELEFONO:  ${utente.getTelefono()}  GRUPPO SANGUIGNO:  ${utente.getGs()}</p>
-                                <p class="stats"> PATOLOGIE:  ${utente.getPatologie()}  FOTO UTENTE:  ${utente.getFoto()}</p>
-                                <p class="stats"> NUM_DONAZIONI:  ${num_donazione} </p> 
-                            </article>
-                        </c:forEach>
-                    </c:forEach>
-                </div>
+                <c:forEach items="${listaUtenti}" var="utente" varStatus="loop">
+                    <div class="col-12">
+                        <article>
+                            <h3 class="stats"><b>NOME: </b> ${utente.getNome()}<b>  COGNOME: </b>${utente.getCognome()}</b></h3>
+                            <p class="stats"> DATA DI NASCITA:  ${utente.getDataDiNascita()}  CODICE FISCALE:  ${utente.getCf()}</p>
+                            <p class="stats"> SESSO:  ${utente.getSesso()}  EMAIL:  ${utente.getEmail()}</p>
+                            <p class="stats"> TELEFONO:  ${utente.getTelefono()}  GRUPPO SANGUIGNO:  ${utente.getGs()}</p>
+                            <p class="stats"> PATOLOGIE:  ${utente.getPatologie()}  FOTO UTENTE:  ${utente.getFoto()}</p>
+                            <p class="stats"> NUM_DONAZIONI:  ${numDonazioni[loop.index]} </p> 
+                        </article>
+                    </div>
+                </c:forEach>
             </c:if>
         </c:if>
 </html>

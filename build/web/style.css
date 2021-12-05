@@ -184,6 +184,7 @@ article
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0,0,0,.2);
     padding: 10px;
+    box-sizing: border-box;
 }
 
 .row
@@ -280,7 +281,7 @@ tr:nth-child(even)
     }
     article
     {
-        height: 250px;
+        height: auto;
     }
 
     img[title=Logo]

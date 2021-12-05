@@ -27,7 +27,7 @@ public class VisualizzaDonatoriServlet extends HttpServlet {
         List<SessioneDonazione> sessioni = new ArrayList<>();
         int[] num_donazioni = new int[utenti.size()];
 
-        for (int i = 0; i <= utenti.size(); i++) {
+        for (int i = 0; i < utenti.size(); i++) {
             sessioni = SessioneDonazioneFactory.getInstance().getAllSessioniUtente(utenti.get(i));
             num_donazioni[i] = sessioni.size();
         }
