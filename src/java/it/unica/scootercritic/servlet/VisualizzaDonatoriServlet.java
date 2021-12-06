@@ -22,7 +22,7 @@ public class VisualizzaDonatoriServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String sceltaString = (String) request.getAttribute("tipo_ordine");
+        String sceltaString = (String) request.getParameter("tipo_ordine");
         int sceltaOrdinamento = (sceltaString != null) ? Integer.parseInt(sceltaString) : 0;
 
         List<Utente> utenti = UtenteFactory.getAllUtenti();

@@ -21,13 +21,16 @@
                 <c:redirect url="VisualizzaDonatoriServlet"/>
             </c:if>
             <c:if test="${not empty utentiConDonazione}">
-                <h1>Donatori registrati </h1>       
-                <select name="tipo_ordine" id="tipo_ordine" onchange="location.reload()">
-                    <option value="0">Cognome A-Z</option>
-                    <option value="1">Cognome Z-A</option>
-                    <option value="2">Donazioni Crescente</option>
-                    <option value="3">Donazione Decrescente</option>
-                </select>
+                <h1>Donatori registrati </h1>
+                <form action="VisualizzaDonatoriServlet" method="post">
+                    <select name="tipo_ordine">
+                        <option value="0">Cognome A-Z</option>
+                        <option value="1">Cognome Z-A</option>
+                        <option value="2">Donazioni Crescente</option>
+                        <option value="3">Donazione Decrescente</option>
+                    </select>
+                    <input type="submit" value="Ordina">
+                </form>
                 <c:forEach items="${utentiConDonazione}" var="utenteConDonazione">
                     <div class="col-12">
                         <article>

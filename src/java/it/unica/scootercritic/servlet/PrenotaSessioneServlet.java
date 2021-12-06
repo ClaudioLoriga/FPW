@@ -28,11 +28,12 @@ public class PrenotaSessioneServlet extends HttpServlet {
         HttpSession session = request.getSession(); // Crea una nuova sessione o recpera quella esistente
         Utente utente_sessione = (Utente) session.getAttribute("utente");
         sessioniDonazione = SessioneDonazioneFactory.getInstance().getAllSessioniUtente(utente_sessione);
+        String sessionprova = request.getParameter("idSessioneScelta");
 
         if (utente_sessione.getSesso().equals("Maschio")) {
             if (sessioniDonazione.size() <= 3) {
                 SessioneDonazione sessione_prenotata = new SessioneDonazione();
-                sessione_prenotata.setId(Long.parseLong(request.getParameter("idSessione")));
+                sessione_prenotata.setId(Long.parseLong(request.getParameter("idSessioneScelta")));
                 sessione_modificata = SessioneDonazioneFactory.ModifySessioneIntoDb(sessione_prenotata, utente_sessione);
                 if (sessione_modificata) {
                     request.getRequestDispatcher("prenotazione_effettuata.jsp").forward(request, response);
@@ -49,7 +50,7 @@ public class PrenotaSessioneServlet extends HttpServlet {
         } else if (utente_sessione.getSesso().equals("Femmina")) {
             if (sessioniDonazione.size() <= 1) {
                 SessioneDonazione sessione_prenotata = new SessioneDonazione();
-                sessione_prenotata.setId(Long.parseLong(request.getParameter("idSessione")));
+                sessione_prenotata.setId(Long.parseLong(request.getParameter("idSessioneScelta")));
                 sessione_modificata = SessioneDonazioneFactory.ModifySessioneIntoDb(sessione_prenotata, utente_sessione);
                 if (sessione_modificata) {
                     request.getRequestDispatcher("prenotazione_effettuata.jsp").forward(request, response);

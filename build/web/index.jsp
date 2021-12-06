@@ -32,11 +32,6 @@ and open the template in the editor.
                     a vostro piacimento con un semplice click!
                     Il tutto <u>completamente online</u>!     
                 </p>
-
-                <input list="listaDiMonopattini" type="text">
-                <datalist id="listaDiMonopattini">
-
-                </datalist>
             </div>
             <div>
                 <h2>Sessioni di donazione disponibili</h2>
@@ -57,14 +52,6 @@ and open the template in the editor.
                         <button id="nextReview"> > </button>
                     </div>
                 </div>
-            </div>
-            <div>
-                <form class="col-12" action="upload" method="POST" enctype="multipart/form-data">
-                    <label for="descrizione">Descrizione File</label>
-                    <input name="descrizione" type="text"/>
-                    <input name="file" type="file" accept="image/*"/>
-                    <input type="submit" value="Carica Immagine"/>
-                </form>
             </div>
         </c:if>
     </body>

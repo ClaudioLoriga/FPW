@@ -27,19 +27,19 @@
                 <c:redirect url="PrenotazioneServlet"/>
             </c:if>
             <h1>Sessioni Disponibili</h1>          
-            <form action="PrenotaSessioneServlet" method="post">
-                <c:forEach items="${listaSessioni}" var="sessione">
-                    <div class="col-12">
+            <c:forEach items="${listaSessioni}" var="sessioneScelta">
+                <div class="col-12">
+                    <form action="PrenotaSessioneServlet" method="post">
                         <article>
-                            <h3 id="orarioSessione" class="stats">Sessione: Inizio ${sessione.getOra_inizio()} Fine ${sessione.getOra_fine()}</h3>
-                            <p id="luogoSessione">Luogo: ${sessione.getLuogo()}</p>
-                            <p id="dataSessione" class="stats"><b>Data: </b>${sessione.getData_sessione()}</p>
-                            <input type="hidden" name="idSessione" id="idSessione" value="${sessione.getId()}">
+                            <h3 id="orarioSessione" class="stats">Sessione: Inizio ${sessioneScelta.getOra_inizio()} Fine ${sessioneScelta.getOra_fine()}</h3>
+                            <p id="luogoSessione">Luogo: ${sessioneScelta.getLuogo()}</p>
+                            <p id="dataSessione" class="stats"><b>Data: </b>${sessioneScelta.getData_sessione()}</p>
+                            <input type="hidden" name="idSessioneScelta" id="idSessioneScelta" value="${sessioneScelta.getId()}">
                             <input type="submit" value ="Prenota">
                         </article>
-                    </div>
-                </c:forEach>
-            </form>
+                    </form>
+                </div>
+            </c:forEach>
         </c:if>
     </body>
 </html>

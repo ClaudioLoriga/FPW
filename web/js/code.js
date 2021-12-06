@@ -123,19 +123,23 @@ $(document).ready(function ()
 );
 
 /*$("#button_archivia").click(function () {
-    $("#creaSessioneDaArchiviare.jsp").submit();
+ $("#creaSessioneDaArchiviare.jsp").submit();
+ });
+ 
+ $("#button_eliminia").click(function () {
+ $("#EliminaSessioneDonazione").submit();
+ });
+ */
+$('#button_archivia').click(function () {
+    window.location.href = 'creaSessioneDaArchiviare.jsp';
 });
 
-$("#button_eliminia").click(function () {
-    $("#EliminaSessioneDonazione").submit();
-});
-*/
-$('#button_archivia').click(function(){
-   window.location.href='creaSessioneDaArchiviare.jsp';
+$('#button_elimina').click(function () {
+    window.location.href = 'EliminaSessioneDonazione';
 });
 
-$('#button_elimina').click(function(){
-   window.location.href='EliminaSessioneDonazione';
+$('select').on('change', function () {
+    window.location.href = 'VisualizzaDonatoriServlet';
 });
 
 
