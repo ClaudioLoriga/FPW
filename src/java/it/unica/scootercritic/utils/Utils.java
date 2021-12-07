@@ -48,48 +48,68 @@ public class Utils {
                 + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND));
     }
 
-        public static List<SessioneDonazione> checkDates(List<SessioneDonazione> sessioniUtente, int numPrenotazioniAnno) {
+    public static List<SessioneDonazione> filtraSessioniDisponibili(List<SessioneDonazione> sessioniOrdinate, List<SessioneDonazione> sessioniUtente, int maxPrenotazioniAnnue) {
 
-        List<SessioneDonazione> sessioniOrdinate = SessioneDonazioneFactory.getInstance().getAllSessioniOrdered();
-        List<SessioneDonazione> sessioniAttive = new ArrayList<>();
-        List<SessioneDonazione> sessioniSelezionate = new ArrayList<>();
-        List<SessioneDonazione> sessioniScelte = new ArrayList<>();
-        SessioneDonazione sessioneOldest = new SessioneDonazione();
+        List<SessioneDonazione> sessioniDisponibiliFuture = new ArrayList<>();
+        List<SessioneDonazione> sessioniUtentePiuRecenti;
+        List<SessioneDonazione> sessioniRisultato = new ArrayList<>();
+        SessioneDonazione sessioneOldest;
         Date now = new Date(System.currentTimeMillis());
         Date dataPiuAnno;
 
         for (SessioneDonazione sessione : sessioniOrdinate) { // Recupero le sessioni dopo la data di oggi
             if (sessione.getData_sessione().after(now)) {
-                sessioniAttive.add(sessione);
+                sessioniDisponibiliFuture.add(sessione);
             }
         }
-        if (sessioniAttive != null && (sessioniAttive.size() > 0 && sessioniUtente.size() < numPrenotazioniAnno)) {
-            return sessioniAttive;
+        
+        if (sessioniUtente.size() < maxPrenotazioniAnnue) {
+            return sessioniDisponibiliFuture;
         } else { // l'utente ha uguali o maggiori prenotazioni del numero max 
-            for (int i = 0; i <= numPrenotazioniAnno; i++) {
-                sessioniSelezionate.add(sessioniOrdinate.get(i));
-                if (sessioneOldest == null || sessioneOldest.getData_sessione().after(sessioniAttive.get(i).getData_sessione())) {
+            /*for (int i = 0; i <= numPrenotazioniAnno; i++) {
+                sessioniPiuRecenti.add(sessioniOrdinate.get(i));
+                if (sessioneOldest == null || sessioneOldest.getData_sessione().after(sessioniDisponibiliFuture.get(i).getData_sessione())) {
                     sessioneOldest = sessioniOrdinate.get(i);
                 }
             }
+           
+             */
+            sessioniUtentePiuRecenti = sessioniUtente.subList(Math.max(sessioniUtente.size() - maxPrenotazioniAnnue, 0), sessioniUtente.size());
+            sessioneOldest = sessioniUtentePiuRecenti.get(0);
+            
             // Ho la sessione più vecchia, aggiungo 1 anno
             Calendar c = Calendar.getInstance();
             c.setTime(sessioneOldest.getData_sessione());
             c.add(Calendar.YEAR, 1);
-            dataPiuAnno = new java.sql.Date((c.getTime()));
+            dataPiuAnno = new java.sql.Date((c.getTime().getTime()));
 
-            LocalDate localDateOldest = dataPiuAnno.toLocalDate();
-            for (SessioneDonazione sessione : sessioniSelezionate) {
-                LocalDate localDateSessione = sessione.getData_sessione().toLocalDate();
-                long daysBetween = DAYS.between(localDateSessione, localDateOldest);
-                if (daysBetween > 365) {
-                    sessioniScelte.add(sessione);
+            
+            int donazioniNellAnno = 0;
+            Date dateMax = dataPiuAnno;
+            for (SessioneDonazione sessione : sessioniUtentePiuRecenti) {
+                if (sessione.getData_sessione().before(dateMax)) {
+                    //sessione entro l'anno
+                    donazioniNellAnno++;
                 }
             }
-            if (sessioniScelte.isEmpty()) {
+            
+            if (donazioniNellAnno >= maxPrenotazioniAnnue) {
+                //non si possono fare altre sessioni fino a dopo dateMax
+                //restituisco solo sessioni oltre dateMax
+                for(SessioneDonazione sessione: sessioniDisponibiliFuture) {
+                    if (sessione.getData_sessione().after(dateMax)) {
+                        sessioniRisultato.add(sessione);
+                    }
+                }
+            } else {
+                //si possono fare ancora donazioni prima di dateMax
+                sessioniRisultato = sessioniDisponibiliFuture;
+            }
+            
+            if (sessioniRisultato.isEmpty()) {
                 return null;
             } else {
-                return sessioniScelte;
+                return sessioniRisultato;
             }
         }
     }

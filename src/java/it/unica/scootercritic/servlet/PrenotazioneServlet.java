@@ -4,6 +4,7 @@ import java.io.IOException;
 import it.unica.scootercritic.model.SessioneDonazione;
 import it.unica.scootercritic.model.SessioneDonazioneFactory;
 import it.unica.scootercritic.model.Utente;
+import it.unica.scootercritic.utils.Utils;
 import java.sql.Date;
 import java.time.LocalDate;
 import static java.time.temporal.ChronoUnit.DAYS;
@@ -26,27 +27,36 @@ public class PrenotazioneServlet extends HttpServlet {
         Utente utente_sessione = (Utente) session.getAttribute("utente");
         String genericError = "Non sono presenti prenotazioni disponibili";
 
-        List<SessioneDonazione> sessioni = SessioneDonazioneFactory.getInstance().getAllSessioni();
-        List<SessioneDonazione> sessioniUtente = SessioneDonazioneFactory.getInstance().getAllSessioniUtente(utente_sessione);
-        List<SessioneDonazione> sessioniSelezionate = new ArrayList<>();
+        List<SessioneDonazione> sessioni = SessioneDonazioneFactory.getInstance().getAllSessioniOrdered();
+        List<SessioneDonazione> sessioniUtente = SessioneDonazioneFactory.getInstance().getAllSessioniUtenteOrdered(utente_sessione);
 
-        if (sessioni != null && sessioni.size() > 0) {
+        List<SessioneDonazione> sessioniDonazioneDisponibili = new ArrayList<>();
+        //
+
+        int maxDonazioni;
+        if (utente_sessione.getSesso().equals("Maschio")) {
+            maxDonazioni = 4;
+        } else {
+            maxDonazioni = 2;
+        }
+        sessioniDonazioneDisponibili = Utils.filtraSessioniDisponibili(sessioni, sessioniUtente, maxDonazioni);
+        if (sessioniDonazioneDisponibili != null && sessioniDonazioneDisponibili.size() > 0) {
 
             SessioneDonazione sessionePiuRecente = null;
-            for (SessioneDonazione sessione : sessioniUtente) {
-                if (sessionePiuRecente == null || sessionePiuRecente.getData_sessione().before(sessione.getData_sessione())) {
-                    sessionePiuRecente = sessione;
-                }
+
+            if (sessioniUtente != null && sessioniUtente.size() > 0) {
+                sessionePiuRecente = sessioniUtente.get(sessioniUtente.size()-1);
             }
 
             if (sessionePiuRecente == null) {
-                pubblicaLista(request, response, sessioni);
+                pubblicaLista(request, response, sessioniDonazioneDisponibili);
             } else {
-
+                List<SessioneDonazione> sessioniSelezionate = new ArrayList<>();
                 LocalDate localDateRecente = sessionePiuRecente.getData_sessione().toLocalDate();
 
-                for (SessioneDonazione sessione : sessioni) {
+                for (SessioneDonazione sessione : sessioniDonazioneDisponibili) {
                     LocalDate localDateSessione = sessione.getData_sessione().toLocalDate();
+                    
                     if (sessione.getData_sessione().after(sessionePiuRecente.getData_sessione())) {
                         long daysBetween = DAYS.between(localDateRecente, localDateSessione);
                         if (daysBetween >= 90) {
@@ -54,13 +64,13 @@ public class PrenotazioneServlet extends HttpServlet {
                         }
                     }
                 }
-                if (sessioniSelezionate != null && sessioniSelezionate.size() > 0) {
+                if (sessioniSelezionate.size() > 0) {
                     pubblicaLista(request, response, sessioniSelezionate);
                 } else {
                     pubblicaErrore(request, response, genericError);
-
                 }
             }
+
         } else {
             pubblicaErrore(request, response, genericError);
         }

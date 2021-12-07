@@ -29,45 +29,16 @@ public class PrenotaSessioneServlet extends HttpServlet {
         Utente utente_sessione = (Utente) session.getAttribute("utente");
         List<SessioneDonazione> sessioniDonazione = SessioneDonazioneFactory.getInstance().getAllSessioniUtente(utente_sessione);
         List<SessioneDonazione> sessioniDonazioneDisponibili = new ArrayList<>();
+        List<SessioneDonazione> sessioniOrdinate = SessioneDonazioneFactory.getInstance().getAllSessioniOrdered();
         //
-        if (utente_sessione.getSesso().equals("Maschio")) {
-            sessioniDonazioneDisponibili = Utils.checkDates(sessioniDonazione, 4);
-            if (sessioniDonazioneDisponibili != null) {
-                SessioneDonazione sessione_prenotata = new SessioneDonazione();
-                sessione_prenotata.setId(Long.parseLong(request.getParameter("idSessioneScelta")));
-                sessione_modificata = SessioneDonazioneFactory.ModifySessioneIntoDb(sessione_prenotata, utente_sessione);
-                if (sessione_modificata) {
-                    request.getRequestDispatcher("prenotazione_effettuata.jsp").forward(request, response);
-                } else {
-                    request.setAttribute("errorMessage", errorePrenotazione);
-                    request.setAttribute("link", "login.jsp");
-                    request.getRequestDispatcher("error.jsp").forward(request, response);
-                }
-            } else {
-                request.setAttribute("errorMessage", nessunaPrenotazioneDisponibile);
-                request.setAttribute("link", "login.jsp");
-                request.getRequestDispatcher("error.jsp").forward(request, response);
-            }
-        } else if (utente_sessione.getSesso().equals("Femmina")) {
-            sessioniDonazioneDisponibili = Utils.checkDates(sessioniDonazione, 2);
-            if (sessioniDonazioneDisponibili != null) {
-                SessioneDonazione sessione_prenotata = new SessioneDonazione();
-                sessione_prenotata.setId(Long.parseLong(request.getParameter("idSessioneScelta")));
-                sessione_modificata = SessioneDonazioneFactory.ModifySessioneIntoDb(sessione_prenotata, utente_sessione);
-                if (sessione_modificata) {
-                    request.getRequestDispatcher("prenotazione_effettuata.jsp").forward(request, response);
-                } else {
-                    request.setAttribute("errorMessage", errorePrenotazione);
-                    request.setAttribute("link", "login.jsp");
-                    request.getRequestDispatcher("error.jsp").forward(request, response);
-                }
-            } else {
-                request.setAttribute("errorMessage", nessunaPrenotazioneDisponibile);
-                request.setAttribute("link", "login.jsp");
-                request.getRequestDispatcher("error.jsp").forward(request, response);
-            }
+
+        SessioneDonazione sessione_prenotata = new SessioneDonazione();
+        sessione_prenotata.setId(Long.parseLong(request.getParameter("idSessioneScelta")));
+        sessione_modificata = SessioneDonazioneFactory.ModifySessioneIntoDb(sessione_prenotata, utente_sessione);
+        if (sessione_modificata) {
+            request.getRequestDispatcher("prenotazione_effettuata.jsp").forward(request, response);
         } else {
-            request.setAttribute("errorMessage", genericError);
+            request.setAttribute("errorMessage", errorePrenotazione);
             request.setAttribute("link", "login.jsp");
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }

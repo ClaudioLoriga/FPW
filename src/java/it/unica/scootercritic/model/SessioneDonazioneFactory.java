@@ -153,6 +153,50 @@ public class SessioneDonazioneFactory {
         }
         return null;
     }
+    
+    public List<SessioneDonazione> getAllSessioniUtenteOrdered(Utente utente) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet set = null;
+        List<SessioneDonazione> sessioniDonazione = new ArrayList<>();
+
+        try {
+            conn = DatabaseManager.getInstance().getDbConnection();
+            String query = "SELECT * FROM sessionedonazione WHERE username = ? ORDER BY data ASC";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, utente.getUsername());
+            set = stmt.executeQuery();
+
+            while (set.next()) {
+                SessioneDonazione sessione = new SessioneDonazione();
+                sessione.setId(set.getLong("id"));
+                sessione.setOra_inizio(set.getTime("ora_inizio"));
+                sessione.setLuogo(set.getString("luogo"));
+                sessione.setData_sessione(set.getDate("data"));
+                sessione.setOra_fine(set.getTime("ora_fine"));
+                sessioniDonazione.add(sessione);
+            }
+            return sessioniDonazione;
+        } catch (SQLException e) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+            try {
+                set.close();
+            } catch (Exception e) {
+            }
+            try {
+                stmt.close();
+            } catch (Exception e) {
+            }
+            try {
+                conn.close();
+            } catch (Exception e) {
+            }
+
+        }
+        return null;
+    }
 
     public SessioneDonazione getSessione(String offset) {
         Connection conn = null;
