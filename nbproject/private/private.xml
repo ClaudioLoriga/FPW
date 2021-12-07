@@ -5,67 +5,31 @@
             <url>web/visualizzaDonatori.jsp</url>
             <bookmark id="1">
                 <name/>
-                <line>34</line>
+                <line>37</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/model/UtenteFactory.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/areaPersonale.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/js/HomeSpecific.js</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/prenotazione_effettuata.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/inserimentoEffettuato.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/fileInserito.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/RegistrazioneServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/nuovo-post.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/SceltaGiornoSessioniServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/CreaSessioneServlet.java</file>
             <file>file:/home/fpw/GitKraken/FPW/web/index.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/js/code.js</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/ListaImmaginiServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/PrenotazioneServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/suggerimentiJSON.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/EliminaSessioneDonazione.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/creaSessioneDaArchiviare.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/utils/sort/SortCognome.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/recensioneJSON.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/LoginServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/RecensioneServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/registrazioneEffettuata.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/utils/Utils.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/AreaPersonale.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/sceltaGiornoSessioni.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/chi-siamo.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/style.css</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/visualizzaDonatori.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/model/UtenteConDonazione.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/modificaEffettuata.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/header.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/sessioneArchiviata.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/AreaPersonaleServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/model/DonazioneArchiviata.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/sessioneEliminata.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/utils/sort/SortDonazioni.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/HomeServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/VisualizzaDonatoriServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/creaSessioneDonazione.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/sessioneJSON.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/model/DonazioneArchiviataFactory.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/ContattiServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/PrenotaSessioneServlet.java</file>
             <file>file:/home/fpw/GitKraken/FPW/web/nuova-prenotazione.jsp</file>
+            <file>file:/home/fpw/GitKraken/FPW/web/areaPersonale.jsp</file>
             <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/model/SessioneDonazione.java</file>
             <file>file:/home/fpw/GitKraken/FPW/web/gestisciSessioniDonazioni.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/ModificaUtenteServlet.java</file>
+            <file>file:/home/fpw/GitKraken/FPW/web/js/code.js</file>
+            <file>file:/home/fpw/GitKraken/FPW/web/visualizzaDonatori.jsp</file>
+            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/PrenotazioneServlet.java</file>
             <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/model/SessioneDonazioneFactory.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/DonazioniEffettuateServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/modifica-utente.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/login.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/LogoutServlet.java</file>
+            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/RegistrazioneServlet.java</file>
+            <file>file:/home/fpw/GitKraken/FPW/web/creaSessioneDaArchiviare.jsp</file>
+            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/LoginServlet.java</file>
+            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/HomeServlet.java</file>
+            <file>file:/home/fpw/GitKraken/FPW/web/sessioneJSON.jsp</file>
+            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/utils/Utils.java</file>
+            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/model/Utente.java</file>
             <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/AggiungiSessioneArchiviataServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/donazioniEffettuate.jsp</file>
+            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/PrenotaSessioneServlet.java</file>
             <file>file:/home/fpw/GitKraken/FPW/web/nuova-registrazione.jsp</file>
         </group>
     </open-files>

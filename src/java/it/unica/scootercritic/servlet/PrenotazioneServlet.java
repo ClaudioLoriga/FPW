@@ -64,17 +64,6 @@ public class PrenotazioneServlet extends HttpServlet {
         } else {
             pubblicaErrore(request, response, genericError);
         }
-
-        /*String command = request.getParameter("offsetId");
-        if (command != null) {
-            SessioneDonazione sessione = SessioneDonazioneFactory.getInstance().getSessione(command);
-            request.setAttribute("sessione", sessione);
-            response.setContentType("application/json");
-            response.setHeader("Expires", "Sat, 6 May 1995 12:00:00 GMT");
-            response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
-            request.getRequestDispatcher("sessioneJSON.jsp").forward(request, response);
-        }
-         */
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

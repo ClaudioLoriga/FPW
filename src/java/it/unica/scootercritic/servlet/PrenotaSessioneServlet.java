@@ -4,8 +4,9 @@ import it.unica.scootercritic.model.SessioneDonazione;
 import it.unica.scootercritic.model.SessioneDonazioneFactory;
 import it.unica.scootercritic.model.Utente;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import it.unica.scootercritic.utils.Utils;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,17 +22,17 @@ public class PrenotaSessioneServlet extends HttpServlet {
 
         boolean sessione_modificata;
         String errorePrenotazione = "La prenotazione non è avvenuta correttamente";
-        String donazioniMassimeRaggiunte = "Hai raggiunto il numero massimo di donazioni annuali";
+        String nessunaPrenotazioneDisponibile = "Non ci sono prenotazioni disponibili";
         String genericError = "Qualcosa è andato storto, riprova";
-        List<SessioneDonazione> sessioniDonazione;
 
         HttpSession session = request.getSession(); // Crea una nuova sessione o recpera quella esistente
         Utente utente_sessione = (Utente) session.getAttribute("utente");
-        sessioniDonazione = SessioneDonazioneFactory.getInstance().getAllSessioniUtente(utente_sessione);
-        String sessionprova = request.getParameter("idSessioneScelta");
-
+        List<SessioneDonazione> sessioniDonazione = SessioneDonazioneFactory.getInstance().getAllSessioniUtente(utente_sessione);
+        List<SessioneDonazione> sessioniDonazioneDisponibili = new ArrayList<>();
+        //
         if (utente_sessione.getSesso().equals("Maschio")) {
-            if (sessioniDonazione.size() <= 3) {
+            sessioniDonazioneDisponibili = Utils.checkDates(sessioniDonazione, 4);
+            if (sessioniDonazioneDisponibili != null) {
                 SessioneDonazione sessione_prenotata = new SessioneDonazione();
                 sessione_prenotata.setId(Long.parseLong(request.getParameter("idSessioneScelta")));
                 sessione_modificata = SessioneDonazioneFactory.ModifySessioneIntoDb(sessione_prenotata, utente_sessione);
@@ -43,12 +44,13 @@ public class PrenotaSessioneServlet extends HttpServlet {
                     request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
             } else {
-                request.setAttribute("errorMessage", donazioniMassimeRaggiunte);
+                request.setAttribute("errorMessage", nessunaPrenotazioneDisponibile);
                 request.setAttribute("link", "login.jsp");
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
         } else if (utente_sessione.getSesso().equals("Femmina")) {
-            if (sessioniDonazione.size() <= 1) {
+            sessioniDonazioneDisponibili = Utils.checkDates(sessioniDonazione, 2);
+            if (sessioniDonazioneDisponibili != null) {
                 SessioneDonazione sessione_prenotata = new SessioneDonazione();
                 sessione_prenotata.setId(Long.parseLong(request.getParameter("idSessioneScelta")));
                 sessione_modificata = SessioneDonazioneFactory.ModifySessioneIntoDb(sessione_prenotata, utente_sessione);
@@ -60,7 +62,7 @@ public class PrenotaSessioneServlet extends HttpServlet {
                     request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
             } else {
-                request.setAttribute("errorMessage", donazioniMassimeRaggiunte);
+                request.setAttribute("errorMessage", nessunaPrenotazioneDisponibile);
                 request.setAttribute("link", "login.jsp");
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }

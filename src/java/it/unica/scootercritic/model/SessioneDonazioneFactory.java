@@ -67,6 +67,49 @@ public class SessioneDonazioneFactory {
         return null;
     }
 
+    public List<SessioneDonazione> getAllSessioniOrdered() {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet set = null;
+        List<SessioneDonazione> sessioniDonazione = new ArrayList<>();
+
+        try {
+            conn = DatabaseManager.getInstance().getDbConnection();
+            String query = "SELECT * FROM sessionedonazione WHERE prenotata = FALSE ORDER BY data ASC";
+            stmt = conn.prepareStatement(query);
+            set = stmt.executeQuery();
+
+            while (set.next()) {
+                SessioneDonazione sessione = new SessioneDonazione();
+                sessione.setId(set.getLong("id"));
+                sessione.setOra_inizio(set.getTime("ora_inizio"));
+                sessione.setLuogo(set.getString("luogo"));
+                sessione.setData_sessione(set.getDate("data"));
+                sessione.setOra_fine(set.getTime("ora_fine"));
+                sessioniDonazione.add(sessione);
+            }
+            return sessioniDonazione;
+        } catch (SQLException e) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+            try {
+                set.close();
+            } catch (Exception e) {
+            }
+            try {
+                stmt.close();
+            } catch (Exception e) {
+            }
+            try {
+                conn.close();
+            } catch (Exception e) {
+            }
+
+        }
+        return null;
+    }
+
     public List<SessioneDonazione> getAllSessioniUtente(Utente utente) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -153,8 +196,8 @@ public class SessioneDonazioneFactory {
         }
         return null;
     }
-    
-        public List<SessioneDonazione> getAllSessioniGiorno(SessioneDonazione giorno_scelto) {
+
+    public List<SessioneDonazione> getAllSessioniGiorno(SessioneDonazione giorno_scelto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet set = null;
@@ -246,7 +289,7 @@ public class SessioneDonazioneFactory {
         } catch (SQLException e) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, e);
             //if (e instanceof PSQLException && e.getMessage().equalsIgnoreCase("No results were returned by the query.")) {
-              //  return true;
+            //  return true;
             //}
 
         } finally {
@@ -262,8 +305,8 @@ public class SessioneDonazioneFactory {
         }
         return false;
     }
-    
-        public static boolean DeleteSessioneFromDb(SessioneDonazione nuova_sessione) {
+
+    public static boolean DeleteSessioneFromDb(SessioneDonazione nuova_sessione) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
