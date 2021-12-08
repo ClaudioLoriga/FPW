@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.unica.scootercritic.servlet;
 
 import it.unica.scootercritic.model.SessioneDonazione;
@@ -13,11 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author fpw
+ * @author Claudio Loriga
  */
 @WebServlet(name = "EliminaSessioneDonazione", urlPatterns = {"/EliminaSessioneDonazione"})
 public class EliminaSessioneDonazione extends HttpServlet {
@@ -29,17 +23,14 @@ public class EliminaSessioneDonazione extends HttpServlet {
         String genericError = "Qualcosa è andato storto, riprova";
         SessioneDonazione sessioneDonazione = new SessioneDonazione();
 
-        HttpSession session = request.getSession(); // Crea una nuova sessione o recpera quella esistente
-
         sessioneDonazione.setId(Long.parseLong(request.getParameter("idSessione")));
         sessione_eliminata = SessioneDonazioneFactory.DeleteSessioneFromDb(sessioneDonazione);
         if (sessione_eliminata) {
             request.getRequestDispatcher("sessioneEliminata.jsp").forward(request, response);
         } else {
             request.setAttribute("errorMessage", genericError);
-            request.setAttribute("link", "login.jsp");
+            request.setAttribute("link", "index.jsp");
             request.getRequestDispatcher("error.jsp").forward(request, response);
-
         }
     }
 

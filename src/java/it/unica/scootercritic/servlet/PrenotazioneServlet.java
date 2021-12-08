@@ -5,7 +5,6 @@ import it.unica.scootercritic.model.SessioneDonazione;
 import it.unica.scootercritic.model.SessioneDonazioneFactory;
 import it.unica.scootercritic.model.Utente;
 import it.unica.scootercritic.utils.Utils;
-import java.sql.Date;
 import java.time.LocalDate;
 import static java.time.temporal.ChronoUnit.DAYS;
 import java.util.ArrayList;
@@ -17,6 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ *
+ * @author Claudio Loriga
+ */
 @WebServlet(name = "PrenotazioneServlet", urlPatterns = {"/PrenotazioneServlet"})
 public class PrenotazioneServlet extends HttpServlet {
 
@@ -29,8 +32,7 @@ public class PrenotazioneServlet extends HttpServlet {
 
         List<SessioneDonazione> sessioni = SessioneDonazioneFactory.getInstance().getAllSessioniOrdered();
         List<SessioneDonazione> sessioniUtente = SessioneDonazioneFactory.getInstance().getAllSessioniUtenteOrdered(utente_sessione);
-        List<SessioneDonazione> sessioniDonazioneDisponibili = new ArrayList<>();
-        
+        List<SessioneDonazione> sessioniDonazioneDisponibili;
 
         int maxDonazioni;
         if (utente_sessione.getSesso().equals("Maschio")) {
@@ -44,7 +46,7 @@ public class PrenotazioneServlet extends HttpServlet {
             SessioneDonazione sessionePiuRecente = null;
 
             if (sessioniUtente != null && sessioniUtente.size() > 0) {
-                sessionePiuRecente = sessioniUtente.get(sessioniUtente.size()-1);
+                sessionePiuRecente = sessioniUtente.get(sessioniUtente.size() - 1);
             }
 
             if (sessionePiuRecente == null) {
@@ -55,7 +57,7 @@ public class PrenotazioneServlet extends HttpServlet {
 
                 for (SessioneDonazione sessione : sessioniDonazioneDisponibili) {
                     LocalDate localDateSessione = sessione.getData_sessione().toLocalDate();
-                    
+
                     if (sessione.getData_sessione().after(sessionePiuRecente.getData_sessione())) {
                         long daysBetween = DAYS.between(localDateRecente, localDateSessione);
                         if (daysBetween >= 90) {
@@ -121,7 +123,7 @@ public class PrenotazioneServlet extends HttpServlet {
 
     private void pubblicaErrore(HttpServletRequest request, HttpServletResponse response, String error) throws ServletException, IOException {
         request.setAttribute("errorMessage", error);
-        request.setAttribute("link", "login.jsp");
+        request.setAttribute("link", "index.jsp");
         request.getRequestDispatcher("error.jsp").forward(request, response);
     }
 }

@@ -1,6 +1,5 @@
 package it.unica.scootercritic.servlet;
 
-//import it.unica.scootercritic.model.Segnalazione;
 import it.unica.scootercritic.model.Utente;
 import it.unica.scootercritic.model.UtenteFactory;
 import java.io.IOException;
@@ -10,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author Claudio Loriga
+ */
 @WebServlet(name = "AreaPersonaleServlet", urlPatterns = {"/AreaPersonaleServlet"})
 public class AreaPersonaleServlet extends HttpServlet {
 

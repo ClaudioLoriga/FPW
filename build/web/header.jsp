@@ -22,5 +22,6 @@
         <c:if test="${user == 'Loriga'}"><li><c:if test="${page=='creaSessioneDonazione'}"><div class="active"></c:if><a href="creaSessioneDonazione.jsp">Crea una sessione</a><c:if test="${page=='creaSessioneDonazione'}"></div></c:if></li></c:if>
         <c:if test="${user == 'Loriga'}"><li><c:if test="${page=='sceltaGiornoSessioni'}"><div class="active"></c:if><a href="sceltaGiornoSessioni.jsp">Gestisci sessioni</a><c:if test="${page=='sceltaGiornoSessioni'}"></div></c:if></li></c:if>
         <c:if test="${user == 'Loriga'}"><li><c:if test="${page=='visualizzaDonatori'}"><div class="active"></c:if><a href="visualizzaDonatori.jsp">Visualizza Donatori</a><c:if test="${page=='visualizzaDonatori'}"></div></c:if></li></c:if>
+        <c:if test="${not empty user}"><li><form action="logout" method="get"><input type="submit" value="Logout"/></form></li></c:if>  
     </ul>
 </nav>

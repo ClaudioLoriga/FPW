@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.unica.scootercritic.servlet;
 
 import java.io.IOException;
@@ -13,7 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+/**
+ *
+ * @author Claudio Loriga
+ */
 @WebServlet(name = "AreaPersonale", urlPatterns = {"/areaPersonale"})
 public class AreaPersonale extends HttpServlet {
 
@@ -21,78 +19,13 @@ public class AreaPersonale extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
-        
-        if(session != null && session.getAttribute("user") != null){
+
+        if (session != null && session.getAttribute("user") != null) {
             response.sendRedirect("areaPersonale.jsp");
-        } else{
+        } else {
             response.sendRedirect("login.jsp");
         }
-        
-        
     }
-    
-  /*  private static AreaPersonale instance;
-
-    private AreaPersonale() {
-    }
-
-    public static AreaPersonale getInstance() {
-        if (instance == null) {
-            instance = new AreaPersonale();
-        }
-        return instance;
-    }
-    
-    public List<Segnalazione> getAllSegnalazioni() {
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet set = null;
-        List<Segnalazione> segnalazioni = new ArrayList<>();
-
-        try {
-            conn = DatabaseManager.getInstance().getDbConnection();
-            String query = "SELECT * FROM segnalazione WHERE utente_id = ?";
-            stmt = conn.prepareStatement(query);
-            set = stmt.executeQuery();
-
-            while (set.next()) {
-                Segnalazione segnalazione = new Segnalazione();
-                segnalazione.setId(set.getLong("id"));
-                segnalazione.setOggetto(set.getString("oggetto"));
-                segnalazione.setTesto(set.getString("testo"));
-                segnalazione.setUtente_id(set.getString("utente_id"));
-                Timestamp ts = set.getTimestamp("data");
-                LocalDateTime localDt = null;
-                if (ts != null) {
-                    localDt = LocalDateTime.ofInstant(
-                            Instant.ofEpochMilli(ts.getTime()), ZoneOffset.UTC);
-                }
-                segnalazione.setData(localDt);
-                segnalazioni.add(segnalazione);
-            }
-            return segnalazioni;
-        } catch (SQLException e) {
-            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, e);
-
-        } finally {
-            try {
-                set.close();
-            } catch (Exception e) {
-            }
-            try {
-                stmt.close();
-            } catch (Exception e) {
-            }
-            try {
-                conn.close();
-            } catch (Exception e) {
-            }
-
-        }
-        return null;
-    
-    }
-    */
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

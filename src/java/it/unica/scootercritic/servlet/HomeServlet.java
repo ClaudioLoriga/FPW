@@ -1,31 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.unica.scootercritic.servlet;
 
-import it.unica.scootercritic.model.MonopattinoFactory;
 import it.unica.scootercritic.model.SessioneDonazione;
 import it.unica.scootercritic.model.SessioneDonazioneFactory;
-import it.unica.scootercritic.model.Utente;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+/**
+ *
+ * @author Claudio Loriga
+ */
 @WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
 public class HomeServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        //HttpSession session = request.getSession(); // Crea una nuova sessione o recpera quella esistente
-        //Utente utente = (Utente) session.getAttribute("utente");
 
         String command = request.getParameter("offsetId");
         if (command != null) {
@@ -35,16 +27,7 @@ public class HomeServlet extends HttpServlet {
             response.setHeader("Expires", "Sat, 6 May 1995 12:00:00 GMT");
             response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
             request.getRequestDispatcher("sessioneJSON.jsp").forward(request, response);
-        } /*else if (command != null && command.equals("listaMonopattini")) {
-            ArrayList<String> monopattini = MonopattinoFactory.getInstance().getSuggerimenti();
-            request.setAttribute("monopattini", monopattini);
-            response.setContentType("application/json");
-            response.setHeader("Expires", "Sat, 5 November 2005 12:00:00 GMT");
-            response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
-            request.getRequestDispatcher("suggerimentiJSON.jsp").forward(request, response);
-        } else if (utente.getUsername().equals("Loriga") && utente.getPassword().equals("65804")) {
-            
-        } */else {
+        } else {
             SessioneDonazione sessione = SessioneDonazioneFactory.getInstance().getSessione("0"); // SE IL COMANDO È NULL, VIENE CARICATA LA PRIMA RECENSIONE E CARICHIAMO LA JSP COME SE FOSSE UNA RICHIESTA NORMALE 
             request.setAttribute("sessione", sessione);
             request.getRequestDispatcher("index.jsp").forward(request, response);

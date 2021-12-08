@@ -1,30 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.unica.scootercritic.servlet;
 
 import it.unica.scootercritic.model.DonazioneArchiviata;
 import it.unica.scootercritic.model.DonazioneArchiviataFactory;
 import it.unica.scootercritic.model.SessioneDonazione;
 import it.unica.scootercritic.model.SessioneDonazioneFactory;
-import it.unica.scootercritic.model.Utente;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author fpw
+ * @author Claudio Loriga
  */
 @WebServlet(name = "AggiungiSessioneArchiviataServlet", urlPatterns = {"/AggiungiSessioneArchiviataServlet"})
 public class AggiungiSessioneArchiviataServlet extends HttpServlet {
@@ -33,13 +25,20 @@ public class AggiungiSessioneArchiviataServlet extends HttpServlet {
             throws ServletException, IOException {
 
         boolean sessione_archiviata, sessione_rimossa;
-        String genericError = "Qualcosa è andato storto, riprova";
+        String genericError = "La sessione non è stata archiviata correttamente, riprova";
+        String campoVuoto = "Un campo non è stato compilato, riprova";
+        String dataInseritaScorrettamente = "La data non è stata inserita correttamente, deve rispettare il formato gg/mm/aaaa";
         DonazioneArchiviata sessione_da_archiviare = new DonazioneArchiviata();
         SessioneDonazione sessione_da_rimuovere = new SessioneDonazione();
 
-        HttpSession session = request.getSession(); // Crea una nuova sessione o recpera quella esistente
         String utente = request.getParameter("utente_sessione");
+        if (utente.isEmpty()) {
+            pubblicaErrore(request, response, campoVuoto);
+        }
         String data_grezza = request.getParameter("data_sessione");
+        if (data_grezza.isEmpty() || !data_grezza.matches("([0-9]+[\\/]){2}[0-9]{4}")) {
+            pubblicaErrore(request, response, dataInseritaScorrettamente);
+        }
         Date data;
         try {
             data = new SimpleDateFormat("dd/MM/yyyy").parse(data_grezza);
@@ -47,6 +46,9 @@ public class AggiungiSessioneArchiviataServlet extends HttpServlet {
             data = new Date(0L);
         }
         String qsp = request.getParameter("qsp_sessione");
+        if (qsp.isEmpty()) {
+            pubblicaErrore(request, response, campoVuoto);
+        }
         String note_sessione = request.getParameter("note_sessione");
         sessione_da_archiviare.setUsername(utente);
         sessione_da_archiviare.setData_sessione(new java.sql.Date(data.getTime()));
@@ -60,9 +62,7 @@ public class AggiungiSessioneArchiviataServlet extends HttpServlet {
         if (sessione_archiviata && sessione_rimossa) {
             request.getRequestDispatcher("sessioneArchiviata.jsp").forward(request, response);
         } else {
-            request.setAttribute("errorMessage", genericError);
-            request.setAttribute("link", "login.jsp");
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+            pubblicaErrore(request, response, genericError);
         }
 
     }
@@ -106,4 +106,9 @@ public class AggiungiSessioneArchiviataServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private void pubblicaErrore(HttpServletRequest request, HttpServletResponse response, String error) throws ServletException, IOException {
+        request.setAttribute("errorMessage", error);
+        request.setAttribute("link", "index.jsp");
+        request.getRequestDispatcher("error.jsp").forward(request, response);
+    }
 }

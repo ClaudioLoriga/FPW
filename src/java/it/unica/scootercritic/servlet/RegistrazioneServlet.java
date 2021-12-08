@@ -15,6 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ *
+ * @author Claudio Loriga
+ */
 @WebServlet(name = "RegistrazioneServlet", urlPatterns = {"/registrazione"})
 public class RegistrazioneServlet extends HttpServlet {
 
@@ -29,10 +33,10 @@ public class RegistrazioneServlet extends HttpServlet {
         String cfScorretto = "Il codice fiscale inserito non è corretto";
         String emailScorretta = "L'email inserita non è corretta";
         String telefonoScorretto = "Il numero inserito non è corretto";
-        HttpSession session = request.getSession(); // Crea una nuova sessione o recpera quella esistente
+        HttpSession session = request.getSession();
         List<String> nomiUtenti = UtenteFactory.getAllUtentiUsername();
 
-        String user = request.getParameter("username_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
+        String user = request.getParameter("username_registrazione");
         for (String nome : nomiUtenti) {
             if (nome.equals(user)) {
                 pubblicaErrore(request, response, erroreUsernameUtente);
@@ -41,15 +45,15 @@ public class RegistrazioneServlet extends HttpServlet {
         if (user.isEmpty()) {
             pubblicaErrore(request, response, campoVuoto);
         }
-        String pass = request.getParameter("password_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
+        String pass = request.getParameter("password_registrazione");
         if (pass.isEmpty()) {
             pubblicaErrore(request, response, campoVuoto);
         }
-        String nome = request.getParameter("nome_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
+        String nome = request.getParameter("nome_registrazione");
         if (nome.isEmpty()) {
             pubblicaErrore(request, response, campoVuoto);
         }
-        String cognome = request.getParameter("cognome_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
+        String cognome = request.getParameter("cognome_registrazione");
         if (cognome.isEmpty()) {
             pubblicaErrore(request, response, campoVuoto);
         }
@@ -63,21 +67,21 @@ public class RegistrazioneServlet extends HttpServlet {
         } catch (ParseException e) {
             data_nascita = new Date(0L);
         }
-        String cf = request.getParameter("cf_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
+        String cf = request.getParameter("cf_registrazione");
         if (cf.isEmpty() || cf.length() > 16) {
             pubblicaErrore(request, response, cfScorretto);
         }
-        String sesso = request.getParameter("sesso_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
-        String email = request.getParameter("email_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
+        String sesso = request.getParameter("sesso_registrazione");
+        String email = request.getParameter("email_registrazione");
         if (email.isEmpty() || !email.matches("[A-Za-z0-9]+[@][A-Za-z0-9]+[.][a-z]+")) {
             pubblicaErrore(request, response, emailScorretta);
         }
-        String telefono = request.getParameter("telefono_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
+        String telefono = request.getParameter("telefono_registrazione");
         if (telefono.isEmpty() || !telefono.matches("[0-9]{10}")) {
             pubblicaErrore(request, response, telefonoScorretto);
         }
-        String gs = request.getParameter("sanguigno_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
-        String patologie = request.getParameter("patologie_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
+        String gs = request.getParameter("sanguigno_registrazione");
+        String patologie = request.getParameter("patologie_registrazione");
         Utente utente = new Utente();
         utente.setUsername(user);
         utente.setPassword(pass);
@@ -126,7 +130,7 @@ public class RegistrazioneServlet extends HttpServlet {
 
     private void pubblicaErrore(HttpServletRequest request, HttpServletResponse response, String error) throws ServletException, IOException {
         request.setAttribute("errorMessage", error);
-        request.setAttribute("link", "login.jsp");
+        request.setAttribute("link", "index.jsp");
         request.getRequestDispatcher("error.jsp").forward(request, response);
     }
 }

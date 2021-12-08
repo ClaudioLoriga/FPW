@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.unica.scootercritic.servlet;
 
-import java.lang.Math;
 import it.unica.scootercritic.model.Recensione;
 import it.unica.scootercritic.model.RecensioneFactory;
 import it.unica.scootercritic.utils.Utils;
 import it.unica.scootercritic.exceptions.InvalidParamException;
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;

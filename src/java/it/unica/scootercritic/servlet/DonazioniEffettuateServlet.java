@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.unica.scootercritic.servlet;
 
 import it.unica.scootercritic.model.SessioneDonazione;
 import it.unica.scootercritic.model.SessioneDonazioneFactory;
 import it.unica.scootercritic.model.Utente;
-import it.unica.scootercritic.model.UtenteFactory;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -22,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author fpw
+ * @author Claudio Loriga
  */
 @WebServlet(name = "DonazioniEffettuateServlet", urlPatterns = {"/DonazioniEffettuateServlet"})
 public class DonazioniEffettuateServlet extends HttpServlet {
@@ -30,7 +24,7 @@ public class DonazioniEffettuateServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession(); // Crea una nuova sessione o recupera quella esistente
+        HttpSession session = request.getSession();
 
         Utente user = (Utente) session.getAttribute("utente");
         List<SessioneDonazione> sessioni = SessioneDonazioneFactory.getInstance().getAllSessioniUtente(user);
