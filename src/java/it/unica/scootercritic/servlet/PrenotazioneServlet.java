@@ -29,9 +29,8 @@ public class PrenotazioneServlet extends HttpServlet {
 
         List<SessioneDonazione> sessioni = SessioneDonazioneFactory.getInstance().getAllSessioniOrdered();
         List<SessioneDonazione> sessioniUtente = SessioneDonazioneFactory.getInstance().getAllSessioniUtenteOrdered(utente_sessione);
-
         List<SessioneDonazione> sessioniDonazioneDisponibili = new ArrayList<>();
-        //
+        
 
         int maxDonazioni;
         if (utente_sessione.getSesso().equals("Maschio")) {

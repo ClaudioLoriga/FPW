@@ -10,6 +10,8 @@ import it.unica.scootercritic.model.SessioneDonazioneFactory;
 import it.unica.scootercritic.model.Utente;
 import it.unica.scootercritic.model.UtenteFactory;
 import java.io.IOException;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,13 +29,21 @@ public class DonazioniEffettuateServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession(); // Crea una nuova sessione o recupera quella esistente
 
         Utente user = (Utente) session.getAttribute("utente");
         List<SessioneDonazione> sessioni = SessioneDonazioneFactory.getInstance().getAllSessioniUtente(user);
+        List<SessioneDonazione> sessioniPassate = new ArrayList<>();
+        Date now = new Date(System.currentTimeMillis());
 
-        request.setAttribute("listaSessioni", sessioni);
+        for (SessioneDonazione sessione : sessioni) {
+            if (sessione.getData_sessione().before(now)) {
+                sessioniPassate.add(sessione);
+            }
+        }
+
+        request.setAttribute("listaSessioni", sessioniPassate);
         request.setAttribute("user", user.getUsername());
         request.getRequestDispatcher("donazioniEffettuate.jsp").forward(request, response);
     }

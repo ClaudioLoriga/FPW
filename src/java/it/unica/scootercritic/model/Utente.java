@@ -16,7 +16,6 @@ public class Utente {
     private String telefono;
     private String gs;
     private String patologie;
-    private String foto;
 
     public Utente() {}
 
@@ -64,10 +63,6 @@ public class Utente {
         return patologie;
     }
 
-    public String getFoto() {
-        return foto;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -110,10 +105,6 @@ public class Utente {
 
     public void setPatologie(String patologie) {
         this.patologie = patologie;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
     }
 
     @Override

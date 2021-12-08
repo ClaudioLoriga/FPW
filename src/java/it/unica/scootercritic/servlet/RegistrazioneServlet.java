@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,14 +22,41 @@ public class RegistrazioneServlet extends HttpServlet {
             throws ServletException, IOException {
 
         boolean registrazioneAvvenuta;
+        String campoVuoto = "Un campo non è stato compilato, riprova";
         String erroreRegistrazione = "La registrazione non è avvenuta";
+        String erroreUsernameUtente = "Lo username è gia stato utilizzato";
+        String dataInseritaScorrettamente = "La data non è stata inserita correttamente, deve rispettare il formato gg/mm/aaaa";
+        String cfScorretto = "Il codice fiscale inserito non è corretto";
+        String emailScorretta = "L'email inserita non è corretta";
+        String telefonoScorretto = "Il numero inserito non è corretto";
         HttpSession session = request.getSession(); // Crea una nuova sessione o recpera quella esistente
+        List<String> nomiUtenti = UtenteFactory.getAllUtentiUsername();
 
         String user = request.getParameter("username_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
+        for (String nome : nomiUtenti) {
+            if (nome.equals(user)) {
+                pubblicaErrore(request, response, erroreUsernameUtente);
+            }
+        }
+        if (user.isEmpty()) {
+            pubblicaErrore(request, response, campoVuoto);
+        }
         String pass = request.getParameter("password_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
+        if (pass.isEmpty()) {
+            pubblicaErrore(request, response, campoVuoto);
+        }
         String nome = request.getParameter("nome_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
+        if (nome.isEmpty()) {
+            pubblicaErrore(request, response, campoVuoto);
+        }
         String cognome = request.getParameter("cognome_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
+        if (cognome.isEmpty()) {
+            pubblicaErrore(request, response, campoVuoto);
+        }
         String data_grezza = request.getParameter("data_di_nascita_registrazione");
+        if (data_grezza.isEmpty() || !data_grezza.matches("([0-9]+[\\/]){2}[0-9]{4}")) {
+            pubblicaErrore(request, response, dataInseritaScorrettamente);
+        }
         Date data_nascita;
         try {
             data_nascita = new SimpleDateFormat("dd/MM/yyyy").parse(data_grezza);
@@ -36,12 +64,20 @@ public class RegistrazioneServlet extends HttpServlet {
             data_nascita = new Date(0L);
         }
         String cf = request.getParameter("cf_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
+        if (cf.isEmpty() || cf.length() > 16) {
+            pubblicaErrore(request, response, cfScorretto);
+        }
         String sesso = request.getParameter("sesso_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
         String email = request.getParameter("email_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
+        if (email.isEmpty() || !email.matches("[A-Za-z0-9]+[@][A-Za-z0-9]+[.][a-z]+")) {
+            pubblicaErrore(request, response, emailScorretta);
+        }
         String telefono = request.getParameter("telefono_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
+        if (telefono.isEmpty() || !telefono.matches("[0-9]{10}")) {
+            pubblicaErrore(request, response, telefonoScorretto);
+        }
         String gs = request.getParameter("sanguigno_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
         String patologie = request.getParameter("patologie_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
-        String immagine = request.getParameter("immagine_registrazione"); // Recupera i parametri passati dal client (nuova-registrazione.jsp)
         Utente utente = new Utente();
         utente.setUsername(user);
         utente.setPassword(pass);
@@ -54,21 +90,13 @@ public class RegistrazioneServlet extends HttpServlet {
         utente.setTelefono(telefono);
         utente.setGs(gs);
         utente.setPatologie(patologie);
-        utente.setFoto(immagine);
         registrazioneAvvenuta = UtenteFactory.setUtenteIntoDb(utente);
 
-        if (registrazioneAvvenuta) { 
-            session.setAttribute("user", utente.getUsername()); // Imposta utente
-            session.setAttribute("utente", utente);
-            session.setAttribute("lastLogin", Utils.convertTime(session.getLastAccessedTime())); // Imposta last login
-            session.setMaxInactiveInterval(30); // Tempo massimo di inattività (in secondi) prima che la sessione scada
-            request.getRequestDispatcher("registrazioneEffettuata.jsp").forward(request, response);
+        if (registrazioneAvvenuta) {
+            pubblicaUtente(session, request, response, utente);
         } else {
-            request.setAttribute("errorMessage", erroreRegistrazione);
-            request.setAttribute("link", "login.jsp");
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+            pubblicaErrore(request, response, erroreRegistrazione);
         }
-
     }
 
     @Override
@@ -87,4 +115,18 @@ public class RegistrazioneServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void pubblicaUtente(HttpSession session, HttpServletRequest request, HttpServletResponse response, Utente utente) throws ServletException, IOException {
+        session.setAttribute("user", utente.getUsername()); // Imposta utente
+        session.setAttribute("utente", utente);
+        session.setAttribute("lastLogin", Utils.convertTime(session.getLastAccessedTime())); // Imposta last login
+        session.setMaxInactiveInterval(30); // Tempo massimo di inattività (in secondi) prima che la sessione scada
+        request.getRequestDispatcher("registrazioneEffettuata.jsp").forward(request, response);
+    }
+
+    private void pubblicaErrore(HttpServletRequest request, HttpServletResponse response, String error) throws ServletException, IOException {
+        request.setAttribute("errorMessage", error);
+        request.setAttribute("link", "login.jsp");
+        request.getRequestDispatcher("error.jsp").forward(request, response);
+    }
 }

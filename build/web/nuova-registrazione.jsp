@@ -41,12 +41,15 @@
                 <input type="text" id="email_registrazione" name="email_registrazione"/>
                 <label for="telefono_registrazione">Inserisci il tuo numero telefonico</label>
                 <input type="number" id="telefono_registrazione" name="telefono_registrazione"/>
-                <label for="sanguigno_registrazione">Inserisci il tuo gruppo sanguigno (A,B,AB,0)</label>
-                <input type="text" id="sanguigno_registrazione" name="sanguigno_registrazione"/>
+                <label>Inserisci il tuo gruppo sanguigno:</label>
+                <select name="sanguigno_registrazione">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="AB">AB</option>
+                    <option value="0">0</option>
+                </select>
                 <label for="patologie_registrazione">Hai eventuali patologie da segnalarci?</label>
                 <textarea id="patologie_registrazione" rows="4" cols="20" name="patologie_registrazione"></textarea>
-                <label for="immagine">Seleziona una tua foto</label>
-                <input id="immagine_registrazione" name="immagine_registrazione" type="file" accept="image/*"/>
                 <input type="submit" value="Conferma"/>
             </form>
         </div>

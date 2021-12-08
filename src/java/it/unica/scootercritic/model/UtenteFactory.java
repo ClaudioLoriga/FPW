@@ -50,7 +50,6 @@ public class UtenteFactory {
                 utente.setTelefono(set.getString("telefono"));
                 utente.setGs(set.getString("gruppo_sanguigno"));
                 utente.setPatologie(set.getString("patologie"));
-                utente.setFoto(set.getString("foto"));
                 utente.setDataDiNascita(set.getDate("data"));
                 return utente;
             } else {
@@ -101,11 +100,48 @@ public class UtenteFactory {
                 utente.setTelefono(set.getString("telefono"));
                 utente.setGs(set.getString("gruppo_sanguigno"));
                 utente.setPatologie(set.getString("patologie"));
-                utente.setFoto(set.getString("foto"));
                 utente.setDataDiNascita(set.getDate("data"));
                 utenti.add(utente);
             }
             return utenti;
+        } catch (SQLException e) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+            try {
+                set.close();
+            } catch (Exception e) {
+            }
+            try {
+                stmt.close();
+            } catch (Exception e) {
+            }
+            try {
+                conn.close();
+            } catch (Exception e) {
+            }
+        }
+        return null;
+    }
+
+    public static List<String> getAllUtentiUsername() {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet set = null;
+        List<String> nomiUtenti = new ArrayList<>();
+
+        try {
+            conn = DatabaseManager.getInstance().getDbConnection();
+
+            String query = "SELECT * FROM utente";
+            stmt = conn.prepareStatement(query);
+            set = stmt.executeQuery();
+
+            while (set.next()) {
+                nomiUtenti.add(set.getString("username"));
+            }
+            return nomiUtenti;
+            
         } catch (SQLException e) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, e);
 
@@ -132,7 +168,7 @@ public class UtenteFactory {
 
         try {
             conn = DatabaseManager.getInstance().getDbConnection();
-            String query = "INSERT INTO utente VALUES" + "(?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO utente VALUES" + "(?,?,?,?,?,?,?,?,?,?,?)";
             stmt = conn.prepareStatement(query);
             stmt.setString(1, nuovo_utente.getUsername());
             stmt.setString(2, nuovo_utente.getPassword());
@@ -143,9 +179,8 @@ public class UtenteFactory {
             stmt.setString(7, nuovo_utente.getEmail());
             stmt.setString(8, nuovo_utente.getGs());
             stmt.setString(9, nuovo_utente.getPatologie());
-            stmt.setString(10, nuovo_utente.getFoto());
-            stmt.setDate(11, nuovo_utente.getDataDiNascita());
-            stmt.setString(12, nuovo_utente.getTelefono());
+            stmt.setDate(10, nuovo_utente.getDataDiNascita());
+            stmt.setString(11, nuovo_utente.getTelefono());
             stmt.executeUpdate();
             return true;
 

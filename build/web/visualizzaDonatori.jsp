@@ -40,7 +40,6 @@
                             <p class="stats"> TELEFONO:  ${utenteConDonazione.utente.getTelefono()}  GRUPPO SANGUIGNO:  ${utenteConDonazione.utente.getGs()}</p>
                             <p class="stats"> PATOLOGIE:  ${utenteConDonazione.utente.getPatologie()}</p>
                             <p class="stats"> NUM_DONAZIONI:  ${utenteConDonazione.numeroDonazioni} </p> 
-                            <c:if test="${utenteConDonazione.utente.getFoto() != null}"><p><img src="img/${utenteConDonazione.utente.getFoto()}"></p></c:if>
                             </article>
                         </div>
                 </c:forEach>

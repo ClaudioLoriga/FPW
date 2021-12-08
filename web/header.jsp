@@ -17,9 +17,6 @@
         <li><c:if test="${page == 'index'}"><div class="active"></c:if><a href="index.jsp">Home</a><c:if test="${page=='index'}"></div></c:if></li>
         <c:if test="${user != 'Loriga'}"><li><c:if test="${page=='news'}"><div class="active"></c:if><a href="news.jsp">News</a><c:if test="${page=='news'}"></div></c:if></li></c:if>
         <c:if test="${user != 'Loriga'}"><li><c:if test="${page=='nuova-prenotazione'}"><div class="active"></c:if><a href="nuova-prenotazione.jsp">Prenotati</a><c:if test="${page=='nuova-prenotazione'}"></div></c:if></li></c:if>
-        <c:if test="${user != 'Loriga'}"><li><c:if test="${page=='about'}"><div class="active"></c:if><a href="about.jsp">About</a><c:if test="${page=='about'}"></div></c:if></li></c:if>
-        <c:if test="${user != 'Loriga'}"><li><c:if test="${page=='chi-siamo'}"><div class="active"></c:if><a href="chi-siamo.jsp">Chi Siamo</a><c:if test="${page=='chi-siamo'}"></div></c:if></li></c:if>
-        <c:if test="${user != 'Loriga'}"><li><c:if test="${page=='contatti'}"><div class="active"></c:if><a href="contatti.jsp">Contatti</a><c:if test="${page=='contatti'}"></div></c:if></li></c:if>     
         <li><c:if test="${page=='areaPers'}"><div class="active"></c:if><a href="areaPersonale.jsp">Area Personale</a><c:if test="${page=='areaPers'}"></div></c:if></li>
         <c:if test="${user == null}"><li><c:if test="${page=='login'}"><div class="active"></c:if><a href="login.jsp">Login</a><c:if test="${page=='login'}"></div></c:if></li></c:if>
         <c:if test="${user == 'Loriga'}"><li><c:if test="${page=='creaSessioneDonazione'}"><div class="active"></c:if><a href="creaSessioneDonazione.jsp">Crea una sessione</a><c:if test="${page=='creaSessioneDonazione'}"></div></c:if></li></c:if>

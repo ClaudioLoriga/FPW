@@ -32,7 +32,7 @@ and open the template in the editor.
                     a vostro piacimento con un semplice click!
                     Il tutto <u>completamente online</u>!     
                 </p>
-            </div>
+            </div>           
             <div>
                 <h2>Sessioni di donazione disponibili</h2>
                 <div>
@@ -40,19 +40,33 @@ and open the template in the editor.
                         <button id="prevReview"> < </button>
                     </div>
                     <div class="col-10">
-                        
                         <article>
                             <h3 id="orarioSessione" class="stats">Sessione: Inizio ${sessione.getOra_inizio()} Fine ${sessione.getOra_fine()}</h3>
                             <p id="luogoSessione">Luogo: ${sessione.getLuogo()}</p>
                             <p id="dataSessione" class="stats"><b>Data: </b>${sessione.getData_sessione()}</p>
                         </article>
-                        
                     </div>
                     <div class="col-1">
                         <button id="nextReview"> > </button>
                     </div>
                 </div>
             </div>
+            <footer>
+                <div class="col-12">
+                    <nav>
+                        <ul>
+                            <li><a href="https://www.facebook.com/AVIS.1927/">Facebook</a>
+                            </li>
+                            <li><a href="https://twitter.com/avisnazionale">Twitter</a>
+                            </li>
+                            <li><a href="https://www.instagram.com/avisnazionale/">Instagram</a>
+                            </li>
+                            <li><a href="https://www.youtube.com/user/avisnazionale">YouTube</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </footer>
         </c:if>
     </body>
 </html>
