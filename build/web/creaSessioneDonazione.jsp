@@ -1,3 +1,8 @@
+<%-- 
+    Document   : creaSessioneDonazione
+    Author     : Claudio Loriga
+--%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,7 +23,7 @@
         </c:if>
         <c:if test="${user == 'Loriga'}">
             <div id="loginBoxUser">
-                <a href="index.jsp"><img title="Logo" alt="Logo avis old" src="img/logo_avis_old.jpg"></a>
+                <a href="index.jsp"><img title="Logo" alt="Logo di Avis old" src="img/logo_avis_old.jpg"></a>
                 <h1>Crea la sessione di donazione</h1>
                 <form action="CreaSessioneServlet" method="post">
                     <label for="data_sessione">Inserisci la data della sessione</label>

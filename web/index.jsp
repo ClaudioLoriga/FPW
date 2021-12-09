@@ -1,8 +1,8 @@
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<%-- 
+    Document   : index
+    Author     : Claudio Loriga
+--%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,7 +16,6 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
         <script type="text/javascript" src ="js/jquery.js"></script>
         <script type="text/javascript" src ="js/code.js"></script>
-        <
     </head>
     <body>
         <c:set var="page" value="index" scope="request"/>

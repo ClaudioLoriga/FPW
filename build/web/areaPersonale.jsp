@@ -1,7 +1,6 @@
 <%-- 
     Document   : areaPersonale
-    Created on : Apr 19, 2021, 4:05:34 AM
-    Author     : fpw
+    Author     : Claudio Loriga
 --%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -21,7 +20,6 @@
         <c:if test="${not empty user}">
             <c:set var="page" value="areaPersonale" scope="request"/>
             <jsp:include page="header.jsp"/>
-
             <div id="userBox">
                 <h1>Ciao ${user}!</h1>
                 <p>Ultimo accesso: ${lastLogin}</p>
@@ -42,12 +40,24 @@
                         <p class="stats"> PATOLOGIE:  ${utente.getPatologie()}    </p>
                     </article>
                     <c:if test="${user != 'Loriga'}">
-                        <a href="modifica-utente.jsp">Le tue informazioni non sono corrette? Modificale qua</a>
-                        <br>
-                        <a href="DonazioniEffettuateServlet">Visualizza le tue donazioni effettuate</a>
+                        <footer>
+                            <div class="col-12">
+                                <nav>
+                                    <ul>
+                                        <li><a href="modifica-utente.jsp">Modifica le tue informazioni</a>
+                                        </li>
+                                        <li><a href="DonazioniEffettuateServlet">Visualizza le donazioni effettuate</a>
+                                        </li>
+                                        <li><a href="DonazioniPrenotateServlet">Visualizza le donazioni prenotate</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </footer>
                     </c:if>
                 </div>
             </div>
         </div>
+
     </body>
 </html>

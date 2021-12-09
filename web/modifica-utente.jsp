@@ -1,7 +1,6 @@
 <%-- 
     Document   : modifica-utente
-    Created on : Nov 30, 2021, 8:35:57 AM
-    Author     : fpw
+    Author     : Claudio Loriga
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,7 +16,7 @@
     </head>
     <body>
         <div id="loginBoxUser">
-            <a href="index.jsp"><img title="Logo" alt="Logo avis old" src="img/logo_avis_old.jpg"></a>
+            <a href="index.jsp"><img title="Logo" alt="Logo di Avis old" src="img/logo_avis_old.jpg"></a>
             <h1>Modifica i tuoi dati!</h1>
             <h2>Lo username è univoco, non può essere modificato</h2>
             <form action="ModificaUtenteServlet" method="post">

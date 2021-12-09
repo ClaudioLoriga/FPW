@@ -26,6 +26,7 @@ public class VisualizzaDonatoriServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String nessunUtente = "Non è stato possibile trovare utenti";
         String sceltaString = (String) request.getParameter("tipo_ordine");
         int sceltaOrdinamento = (sceltaString != null) ? Integer.parseInt(sceltaString) : 0;
 
@@ -58,9 +59,12 @@ public class VisualizzaDonatoriServlet extends HttpServlet {
                 break;
         }
 
-        request.setAttribute("utentiConDonazione", utentiConDonazione);
-        request.getRequestDispatcher("visualizzaDonatori.jsp").forward(request, response);
-
+        if (!utentiConDonazione.isEmpty()) {
+            request.setAttribute("utentiConDonazione", utentiConDonazione);
+            request.getRequestDispatcher("visualizzaDonatori.jsp").forward(request, response);
+        } else {
+            pubblicaErrore(request, response, nessunUtente);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -102,4 +106,9 @@ public class VisualizzaDonatoriServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private void pubblicaErrore(HttpServletRequest request, HttpServletResponse response, String error) throws ServletException, IOException {
+        request.setAttribute("errorMessage", error);
+        request.setAttribute("link", "index.jsp");
+        request.getRequestDispatcher("error.jsp").forward(request, response);
+    }
 }

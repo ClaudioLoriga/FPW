@@ -1,3 +1,8 @@
+<%-- 
+    Document   : sessioneEliminata
+    Author     : Claudio Loriga
+--%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,6 +14,7 @@
     </head>
     <body>
         <c:set var="page" value="creaSessioneDaArchiviare" scope="request"/>
+        <jsp:include page="header.jsp"/>
         <div id="loginBox">
             <a href="index.jsp"><img title="Logo" alt="Logo avis old" src="img/logo_avis_old.jpg"></a>
                 <c:if test="${user != 'Loriga'}">

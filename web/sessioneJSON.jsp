@@ -1,7 +1,6 @@
 <%-- 
     Document   : sessioneJSON
-    Created on : Oct 8, 2021, 3:09:48 AM
-    Author     : fpw
+    Author     : Claudio Loriga
 --%>
 
 <%@page contentType="application/json" pageEncoding="UTF-8"%>

@@ -1,3 +1,8 @@
+<%-- 
+    Document   : visualizzaDonatori
+    Author     : Claudio Loriga
+--%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -39,9 +44,9 @@
                             <p class="stats"> SESSO:  ${utenteConDonazione.utente.getSesso()}  EMAIL:  ${utenteConDonazione.utente.getEmail()}</p>
                             <p class="stats"> TELEFONO:  ${utenteConDonazione.utente.getTelefono()}  GRUPPO SANGUIGNO:  ${utenteConDonazione.utente.getGs()}</p>
                             <p class="stats"> PATOLOGIE:  ${utenteConDonazione.utente.getPatologie()}</p>
-                            <p class="stats"> NUM_DONAZIONI:  ${utenteConDonazione.numeroDonazioni} </p> 
-                            </article>
-                        </div>
+                            <p class="stats"> NUMERO DONAZIONI:  ${utenteConDonazione.numeroDonazioni} </p> 
+                        </article>
+                    </div>
                 </c:forEach>
             </c:if>
         </c:if>

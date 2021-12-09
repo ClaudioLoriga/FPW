@@ -1,3 +1,7 @@
+/**
+ *
+ * @author Claudio Loriga
+ */
 package it.unica.scootercritic.model;
 
 import it.unica.scootercritic.db.DatabaseManager;
@@ -141,7 +145,7 @@ public class UtenteFactory {
                 nomiUtenti.add(set.getString("username"));
             }
             return nomiUtenti;
-            
+
         } catch (SQLException e) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, e);
 

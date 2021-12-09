@@ -33,9 +33,7 @@ public class PrenotaSessioneServlet extends HttpServlet {
         if (sessione_modificata) {
             request.getRequestDispatcher("prenotazione_effettuata.jsp").forward(request, response);
         } else {
-            request.setAttribute("errorMessage", errorePrenotazione);
-            request.setAttribute("link", "index.jsp");
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+            pubblicaErrore(request, response, errorePrenotazione);
         }
     }
 
@@ -55,4 +53,10 @@ public class PrenotaSessioneServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void pubblicaErrore(HttpServletRequest request, HttpServletResponse response, String error) throws ServletException, IOException {
+        request.setAttribute("errorMessage", error);
+        request.setAttribute("link", "index.jsp");
+        request.getRequestDispatcher("error.jsp").forward(request, response);
+    }
 }

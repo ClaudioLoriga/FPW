@@ -1,7 +1,6 @@
 <%-- 
     Document   : error
-    Created on : Apr 14, 2021, 7:39:49 AM
-    Author     : fpw
+    Author     : Claudio Loriga
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,10 +14,9 @@
     </head>
     <body>
         <header>
-            <a href="index.jsp"><img title="Logo" alt="Logo di ScooterCritic" src="img/logo.png" width="368" height="73"></a>
+                <jsp:include page="header.jsp"/>
         </header>
-        <h1>Error: ${errorMessage}</h1>
+        <h1>Errore: ${errorMessage}</h1>
         <a href="${link}">Torna indietro</a>
-        
     </body>
 </html>

@@ -1,3 +1,8 @@
+/**
+ *
+ * @author Claudio Loriga
+ */
+
 package it.unica.scootercritic.model;
 
 import java.sql.Date;

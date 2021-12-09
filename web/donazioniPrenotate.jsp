@@ -23,19 +23,23 @@
         </c:if>
         <c:if test="${not empty user}">
             <c:if test="${empty listaSessioni}">
-                <c:redirect url="DonazioniEffettuateServlet"/>
+                <c:redirect url="DonazioniPrenotateServlet"/>
             </c:if>
-            <h1><b>Le tue donazioni effettuate</b></h1>
-            <h2>Grazie di cuore!</h2>
-                <c:forEach items="${listaSessioni}" var="sessione">
-                    <div class="col-12">
-                        <article>
-                            <h3 id="orarioSessione" class="stats">Donazione ${sessione.getOra_inizio()} - ${sessione.getOra_fine()}</h3>
-                            <p id="luogoSessione">Luogo: ${sessione.getLuogo()}</p>
-                            <p id="dataSessione" class="stats"><b>Data: </b>${sessione.getData_sessione()}</p>
-                        </article>
-                    </c:forEach>
+            <h1><b>Le tue donazioni prenotate</b></h1>
+            <c:forEach items="${listaSessioni}" var="sessione">
+                <div class="col-12">
+                    <article>
+                        <h3 id="orarioSessione" class="stats">Donazione ${sessione.getOra_inizio()} - ${sessione.getOra_fine()}</h3>
+                        <p id="luogoSessione">Luogo: ${sessione.getLuogo()}</p>
+                        <p id="dataSessione" class="stats"><b>Data: </b>${sessione.getData_sessione()}</p>
+                        <form action="AnnullaPrenotazioneServlet" method="post">
+                            <input type="hidden" name="idSessione" id="idSessione" value="${sessione.getId()}">
+                            <input type="submit" value ="Annulla">
+                        </form>
+                    </article>
                 </div>
+            </c:forEach>
         </c:if>
     </body>
 </html>
+

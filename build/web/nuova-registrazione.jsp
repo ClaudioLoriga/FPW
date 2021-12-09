@@ -1,7 +1,6 @@
 <%-- 
     Document   : nuova-registrazione
-    Created on : Sep 30, 2021, 10:41:51 AM
-    Author     : fpw
+    Author     : Claudio Loriga
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,7 +16,7 @@
     </head>
     <body>
         <div id="loginBoxUser">
-            <a href="index.jsp"><img title="Logo" alt="Logo avis old" src="img/logo_avis_old.jpg"></a>
+            <a href="index.jsp"><img title="Logo" alt="Logo di Avis old" src="img/logo_avis_old.jpg"></a>
             <h1>Registrati!</h1>
             <form action="registrazione" method="post">
                 <label for="username_registrazione">Inserisci uno username</label>

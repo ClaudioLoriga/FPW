@@ -1,7 +1,6 @@
 <%-- 
     Document   : nuova-prenotazione
-    Created on : Nov 14, 2021, 11:00:18 AM
-    Author     : fpw
+    Author     : Claudio Loriga
 --%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

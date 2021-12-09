@@ -1,3 +1,7 @@
+/**
+ *
+ * @author Claudio Loriga
+ */
 package it.unica.scootercritic.model;
 
 import it.unica.scootercritic.db.DatabaseManager;
@@ -153,7 +157,7 @@ public class SessioneDonazioneFactory {
         }
         return null;
     }
-    
+
     public List<SessioneDonazione> getAllSessioniUtenteOrdered(Utente utente) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -332,9 +336,35 @@ public class SessioneDonazioneFactory {
 
         } catch (SQLException e) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, e);
-            //if (e instanceof PSQLException && e.getMessage().equalsIgnoreCase("No results were returned by the query.")) {
-            //  return true;
-            //}
+
+        } finally {
+            try {
+                stmt.close();
+            } catch (Exception e) {
+            }
+            try {
+                conn.close();
+            } catch (Exception e) {
+            }
+
+        }
+        return false;
+    }
+
+    public static boolean AnnullaSessione(SessioneDonazione sessione_prenotata) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = DatabaseManager.getInstance().getDbConnection();
+            String query = "UPDATE sessionedonazione SET prenotata = FALSE, username = null WHERE id = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setLong(1, sessione_prenotata.getId());
+            stmt.executeUpdate();
+            return true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, e);
 
         } finally {
             try {

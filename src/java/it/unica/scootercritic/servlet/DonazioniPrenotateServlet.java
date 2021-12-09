@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Claudio Loriga
  */
-@WebServlet(name = "DonazioniEffettuateServlet", urlPatterns = {"/DonazioniEffettuateServlet"})
-public class DonazioniEffettuateServlet extends HttpServlet {
+@WebServlet(name = "DonazioniPrenotateServlet", urlPatterns = {"/DonazioniPrenotateServlet"})
+public class DonazioniPrenotateServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -33,7 +33,7 @@ public class DonazioniEffettuateServlet extends HttpServlet {
         Date now = new Date(System.currentTimeMillis());
 
         for (SessioneDonazione sessione : sessioni) {
-            if (sessione.getData_sessione().before(now)) {
+            if (sessione.getData_sessione().after(now)) {
                 sessioniPassate.add(sessione);
             }
         }
@@ -41,13 +41,13 @@ public class DonazioniEffettuateServlet extends HttpServlet {
         if (!sessioniPassate.isEmpty()) {
             request.setAttribute("listaSessioni", sessioniPassate);
             request.setAttribute("user", user.getUsername());
-            request.getRequestDispatcher("donazioniEffettuate.jsp").forward(request, response);
+            request.getRequestDispatcher("donazioniPrenotate.jsp").forward(request, response);
         } else {
             pubblicaErrore(request, response, nessunaSessione);
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -91,4 +91,5 @@ public class DonazioniEffettuateServlet extends HttpServlet {
         request.setAttribute("link", "index.jsp");
         request.getRequestDispatcher("error.jsp").forward(request, response);
     }
+
 }

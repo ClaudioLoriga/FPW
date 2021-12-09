@@ -1,15 +1,14 @@
 <%-- 
     Document   : header
-    Created on : May 7, 2021, 8:19:45 AM
-    Author     : fpw
+    Author     : Claudio Loriga
 --%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <header>
-    <a href="index.jsp"><img title="Logo" alt="Logo di Avis old" src="img/logo_avis_old.jpg"></a>
-    <a href="index.jsp" id="headerText">AVIS- Associazione Volontari Italiani Sangue</a>
+    <h1><a href="index.jsp"><img title="Logo" alt="Logo di Avis old" src="img/logo_avis_old.jpg"></a></h1>
+    <h2><a href="index.jsp" id="headerText">AVIS - Associazione Volontari Italiani Sangue</a></h2>
     <script type="text/javascript" src ="js/code.js"></script>
 </header>
 <nav>

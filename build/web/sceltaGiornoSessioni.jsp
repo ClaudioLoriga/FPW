@@ -1,3 +1,8 @@
+<%-- 
+    Document   : sceltaGiornoSessioni
+    Author     : Claudio Loriga
+--%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,8 +22,8 @@
             <c:redirect url="index.jsp"/>
         </c:if>
         <c:if test="${user == 'Loriga'}">
-            <div id="loginBoxUser">
-                <a href="index.jsp"><img title="Logo" alt="Logo avis old" src="img/logo_avis_old.jpg"></a>
+            <div id="loginBoxUser">   
+                <a href="index.jsp"><img title="Logo" alt="Logo di Avis old" src="img/logo_avis_old.jpg"></a>
                 <h1>Scegli il giorno delle sessioni di donazione desiderate</h1>
                 <form action="SceltaGiornoSessioniServlet" method="post">
                     <label for="data_sessione_search">Inserisci la data desiderata</label>

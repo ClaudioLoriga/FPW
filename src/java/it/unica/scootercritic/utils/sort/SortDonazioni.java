@@ -1,12 +1,12 @@
+/**
+ *
+ * @author Claudio Loriga
+ */
 package it.unica.scootercritic.utils.sort;
 
 import it.unica.scootercritic.model.UtenteConDonazione;
 import java.util.Comparator;
 
-/**
- *
- * @author fpw
- */
 public class SortDonazioni implements Comparator<UtenteConDonazione> {
 
     @Override

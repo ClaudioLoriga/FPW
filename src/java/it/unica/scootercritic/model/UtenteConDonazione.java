@@ -1,23 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @author Claudio Loriga
  */
 package it.unica.scootercritic.model;
 
 import java.util.Objects;
 
-/**
- *
- * @author fpw
- */
 public class UtenteConDonazione {
-    
+
     public UtenteConDonazione(Utente insUtente, int numDonazioni) {
         utente = insUtente;
-        numeroDonazioni = numDonazioni; 
+        numeroDonazioni = numDonazioni;
     }
-    
+
     private final Utente utente;
     private final int numeroDonazioni;
 
@@ -57,6 +52,5 @@ public class UtenteConDonazione {
         }
         return true;
     }
-    
-    
+
 }

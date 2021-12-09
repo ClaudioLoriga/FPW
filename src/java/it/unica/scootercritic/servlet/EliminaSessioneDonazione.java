@@ -25,12 +25,11 @@ public class EliminaSessioneDonazione extends HttpServlet {
 
         sessioneDonazione.setId(Long.parseLong(request.getParameter("idSessione")));
         sessione_eliminata = SessioneDonazioneFactory.DeleteSessioneFromDb(sessioneDonazione);
+
         if (sessione_eliminata) {
             request.getRequestDispatcher("sessioneEliminata.jsp").forward(request, response);
         } else {
-            request.setAttribute("errorMessage", genericError);
-            request.setAttribute("link", "index.jsp");
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+            pubblicaErrore(request, response, genericError);
         }
     }
 
@@ -72,4 +71,10 @@ public class EliminaSessioneDonazione extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void pubblicaErrore(HttpServletRequest request, HttpServletResponse response, String error) throws ServletException, IOException {
+        request.setAttribute("errorMessage", error);
+        request.setAttribute("link", "index.jsp");
+        request.getRequestDispatcher("error.jsp").forward(request, response);
+    }
 }

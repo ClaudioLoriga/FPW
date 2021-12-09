@@ -1,11 +1,12 @@
+/**
+ *
+ * @author Claudio Loriga
+ */
 package it.unica.scootercritic.utils;
 
 import it.unica.scootercritic.exceptions.InvalidParamException;
 import it.unica.scootercritic.model.SessioneDonazione;
-import it.unica.scootercritic.model.SessioneDonazioneFactory;
 import java.sql.Date;
-import java.time.LocalDate;
-import static java.time.temporal.ChronoUnit.DAYS;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -62,28 +63,19 @@ public class Utils {
                 sessioniDisponibiliFuture.add(sessione);
             }
         }
-        
+
         if (sessioniUtente.size() < maxPrenotazioniAnnue) {
             return sessioniDisponibiliFuture;
         } else { // l'utente ha uguali o maggiori prenotazioni del numero max 
-            /*for (int i = 0; i <= numPrenotazioniAnno; i++) {
-                sessioniPiuRecenti.add(sessioniOrdinate.get(i));
-                if (sessioneOldest == null || sessioneOldest.getData_sessione().after(sessioniDisponibiliFuture.get(i).getData_sessione())) {
-                    sessioneOldest = sessioniOrdinate.get(i);
-                }
-            }
-           
-             */
             sessioniUtentePiuRecenti = sessioniUtente.subList(Math.max(sessioniUtente.size() - maxPrenotazioniAnnue, 0), sessioniUtente.size());
             sessioneOldest = sessioniUtentePiuRecenti.get(0);
-            
+
             // Ho la sessione più vecchia, aggiungo 1 anno
             Calendar c = Calendar.getInstance();
             c.setTime(sessioneOldest.getData_sessione());
             c.add(Calendar.YEAR, 1);
             dataPiuAnno = new java.sql.Date((c.getTime().getTime()));
 
-            
             int donazioniNellAnno = 0;
             Date dateMax = dataPiuAnno;
             for (SessioneDonazione sessione : sessioniUtentePiuRecenti) {
@@ -92,11 +84,11 @@ public class Utils {
                     donazioniNellAnno++;
                 }
             }
-            
+
             if (donazioniNellAnno >= maxPrenotazioniAnnue) {
                 //non si possono fare altre sessioni fino a dopo dateMax
                 //restituisco solo sessioni oltre dateMax
-                for(SessioneDonazione sessione: sessioniDisponibiliFuture) {
+                for (SessioneDonazione sessione : sessioniDisponibiliFuture) {
                     if (sessione.getData_sessione().after(dateMax)) {
                         sessioniRisultato.add(sessione);
                     }
@@ -105,7 +97,7 @@ public class Utils {
                 //si possono fare ancora donazioni prima di dateMax
                 sessioniRisultato = sessioniDisponibiliFuture;
             }
-            
+
             if (sessioniRisultato.isEmpty()) {
                 return null;
             } else {
