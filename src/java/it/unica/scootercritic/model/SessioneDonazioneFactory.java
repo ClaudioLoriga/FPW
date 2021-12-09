@@ -202,7 +202,7 @@ public class SessioneDonazioneFactory {
         return null;
     }
 
-    public SessioneDonazione getSessione(String offset) {
+    public SessioneDonazione getSessione(int offset) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet set = null;
@@ -212,7 +212,7 @@ public class SessioneDonazioneFactory {
             conn = DatabaseManager.getInstance().getDbConnection();
             String query = "SELECT * FROM sessionedonazione WHERE prenotata = FALSE LIMIT 1 OFFSET ?"; // CON LIMIT 1 PRENDO 1 SOLO ELEMENTO, OFFSET PERMETTE DI SALTARE ELEMENTI NELLA QUERY (WHERE prenotata = 0)
             stmt = conn.prepareStatement(query);
-            stmt.setInt(1, Integer.parseInt(offset));
+            stmt.setInt(1, offset);
             set = stmt.executeQuery();
 
             while (set.next()) {

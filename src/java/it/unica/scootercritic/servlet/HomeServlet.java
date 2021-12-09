@@ -3,6 +3,7 @@ package it.unica.scootercritic.servlet;
 import it.unica.scootercritic.model.SessioneDonazione;
 import it.unica.scootercritic.model.SessioneDonazioneFactory;
 import java.io.IOException;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,16 +22,31 @@ public class HomeServlet extends HttpServlet {
 
         String command = request.getParameter("offsetId");
         if (command != null) {
-            SessioneDonazione sessione = SessioneDonazioneFactory.getInstance().getSessione(command);
-            request.setAttribute("sessione", sessione);
-            response.setContentType("application/json");
-            response.setHeader("Expires", "Sat, 6 May 1995 12:00:00 GMT");
-            response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
-            request.getRequestDispatcher("sessioneJSON.jsp").forward(request, response);
+            SessioneDonazione sessione = SessioneDonazioneFactory.getInstance().getSessione(Integer.parseInt(command));
+            if (sessione.getData_sessione().after(new Date(System.currentTimeMillis()))) {
+                request.setAttribute("sessione", sessione);
+                response.setContentType("application/json");
+                response.setHeader("Expires", "Sat, 6 May 1995 12:00:00 GMT");
+                response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+                request.getRequestDispatcher("sessioneJSON.jsp").forward(request, response);
+            } else {
+                sessione = SessioneDonazioneFactory.getInstance().getSessione(Integer.parseInt(command) + 1);
+                request.setAttribute("sessione", sessione);
+                response.setContentType("application/json");
+                response.setHeader("Expires", "Sat, 6 May 1995 12:00:00 GMT");
+                response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+                request.getRequestDispatcher("sessioneJSON.jsp").forward(request, response);
+            }
         } else {
-            SessioneDonazione sessione = SessioneDonazioneFactory.getInstance().getSessione("0"); // SE IL COMANDO È NULL, VIENE CARICATA LA PRIMA RECENSIONE E CARICHIAMO LA JSP COME SE FOSSE UNA RICHIESTA NORMALE 
-            request.setAttribute("sessione", sessione);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            SessioneDonazione sessione = SessioneDonazioneFactory.getInstance().getSessione(0); // SE IL COMANDO È NULL, VIENE CARICATA LA PRIMA RECENSIONE E CARICHIAMO LA JSP COME SE FOSSE UNA RICHIESTA NORMALE
+            if (sessione.getData_sessione().after(new Date(System.currentTimeMillis()))) {
+                request.setAttribute("sessione", sessione);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            } else {
+                sessione = SessioneDonazioneFactory.getInstance().getSessione(1);
+                request.setAttribute("sessione", sessione);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
         }
     }
 

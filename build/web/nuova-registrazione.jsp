@@ -36,6 +36,7 @@
                     <option value="Maschio">Maschio</option>
                     <option value="Femmina">Femmina</option>
                 </select>
+                <br>
                 <label for="email_registrazione">Inserisci la tua email</label>
                 <input type="text" id="email_registrazione" name="email_registrazione"/>
                 <label for="telefono_registrazione">Inserisci il tuo numero telefonico</label>
@@ -47,6 +48,7 @@
                     <option value="AB">AB</option>
                     <option value="0">0</option>
                 </select>
+                <br>
                 <label for="patologie_registrazione">Hai eventuali patologie da segnalarci?</label>
                 <textarea id="patologie_registrazione" rows="4" cols="20" name="patologie_registrazione"></textarea>
                 <input type="submit" value="Conferma"/>
