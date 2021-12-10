@@ -8,8 +8,8 @@
 <html>
     <head>
         <title>Avis - Registrazione</title>
-        <meta name="author" content="Valentino Artizzu">
-        <meta name="description" content="Accesso al sito">
+        <meta name="author" content="Claudio Loriga">
+        <meta name="description" content="Registrazione al sito">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">

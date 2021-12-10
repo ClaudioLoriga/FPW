@@ -1,8 +1,3 @@
-<%-- 
-    Document   : sessioneJSON
-    Author     : Claudio Loriga
---%>
-
 <%@page contentType="application/json" pageEncoding="UTF-8"%>
 <%@taglib prefix="json" uri="http://www.atg.com/taglibs/json"%>
 <json:object>

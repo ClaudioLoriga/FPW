@@ -5,13 +5,13 @@ $(document).ready(function ()
     {
         if (offset > 0)
             offset--;
-        $.ajax({// EFFETTUO UNA RICHIESTA AJAX CON PARAMETRO "home"
+        $.ajax({
             url: "home",
             data: {
-                offsetId: offset // MANDERÀ offsetId (RENDENDOLO NON NULL NELLA SERVLET)
+                offsetId: offset 
             },
-            dataType: "json", // RICHIEDO UN RETURN DI TIPO "json"
-            success: function (data, state) { // SE LA RICHIESTA HA SUCCESSO, UTILIZZO I DATI (offset) E UTILIZZO LA FUNZIONE "aggiornaSessione"
+            dataType: "json",
+            success: function (data, state) { 
                 aggiornaSessione(data);
             },
             error: function (data, state) {
@@ -30,7 +30,7 @@ $(document).ready(function ()
             },
             dataType: "json",
             success: function (data, state) {
-                if (data.luogo === "") { // SE IL SERVER RESTITUISCE UNA SESSIONE NON ESISTENTE (UNA SESSIONE VUOTA) RIPORTO L'OFFSET AL VALORE INIZIALE
+                if (data.luogo === "") {
                     offset--;
                 } else {
                     aggiornaSessione(data);

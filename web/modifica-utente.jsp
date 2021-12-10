@@ -9,7 +9,7 @@
     <head>
         <title>Avis - Modifica Utente</title>
         <meta name="author" content="Claudio Loriga">
-        <meta name="description" content="Accesso al sito">
+        <meta name="description" content="Modifica Utente">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">

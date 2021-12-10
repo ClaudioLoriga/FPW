@@ -10,7 +10,7 @@
     <head>
         <title>AVIS</title>
         <meta name="author" content="ClaudioLoriga">
-        <meta name="description" content="Il sito di recensioni di monopattini elettrici">
+        <meta name="description" content="Il sito dell'associazione volontari italiani sangue">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">

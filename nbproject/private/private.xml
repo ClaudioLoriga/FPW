@@ -5,52 +5,51 @@
             <url>web/visualizzaDonatori.jsp</url>
             <bookmark id="1">
                 <name/>
-                <line>37</line>
+                <line>42</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/model/UtenteFactory.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/areaPersonale.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/js/HomeSpecific.js</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/visualizzaDonatori.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/inserimentoEffettuato.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/header.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/FileServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/RegistrazioneServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/AreaPersonaleServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/news.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/VisualizzaDonatoriServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/HomeServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/creaSessioneDonazione.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/exceptions/InvalidParamException.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/SceltaGiornoSessioniServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/ContattiServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/PrenotaSessioneServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/CreaSessioneServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/index.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/gestisciSessioniDonazioni.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/js/code.js</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/ModificaUtenteServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/ListaImmaginiServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/PrenotazioneServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/model/SessioneDonazioneFactory.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/modifica-utente.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/EliminaSessioneDonazione.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/DonazioniEffettuateServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/creaSessioneDaArchiviare.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/img/logo_avis_old.jpg</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/LoginServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/error.jsp</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/utils/Utils.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/RecensioneServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/model/Utente.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/LogoutServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/AreaPersonale.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/src/java/it/unica/scootercritic/servlet/AggiungiSessioneArchiviataServlet.java</file>
-            <file>file:/home/fpw/GitKraken/FPW/web/nuova-registrazione.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/src/java/it/unica/avis/model/SessioneDonazione.java</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/index.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/src/java/it/unica/avis/model/UtenteConDonazione.java</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/prenotazione_effettuata.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/creaSessioneDaArchiviare.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/src/java/it/unica/avis/model/SessioneDonazioneFactory.java</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/registrazioneEffettuata.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/annullamentoEffettuato.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/areaPersonale.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/nuova-prenotazione.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/inserimentoEffettuato.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/src/java/it/unica/avis/model/DonazioneArchiviata.java</file>
+            <file>file:/home/fpw/GitKraken/AVIS/src/java/it/unica/avis/servlet/AnnullaPrenotazioneServlet.java</file>
+            <file>file:/home/fpw/GitKraken/AVIS/src/java/it/unica/avis/model/DonazioneArchiviataFactory.java</file>
+            <file>file:/home/fpw/GitKraken/AVIS/src/java/it/unica/avis/utils/Utils.java</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/sessioneArchiviata.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/src/java/it/unica/avis/exceptions/InvalidParamException.java</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/style.css</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/donazioniEffettuate.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/modificaEffettuata.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/sceltaGiornoSessioni.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/src/java/it/unica/avis/db/DatabaseManager.java</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/nuova-registrazione.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/modifica-utente.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/news.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/src/java/it/unica/avis/model/Utente.java</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/header.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/src/java/it/unica/avis/model/UtenteFactory.java</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/visualizzaDonatori.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/src/java/it/unica/avis/servlet/AggiungiSessioneArchiviataServlet.java</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/login.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/error.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/sessioneJSON.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/gestisciSessioniDonazioni.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/sessioneEliminata.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/creaSessioneDonazione.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/donazioniPrenotate.jsp</file>
+            <file>file:/home/fpw/GitKraken/AVIS/web/js/code.js</file>
         </group>
     </open-files>
 </project-private>
